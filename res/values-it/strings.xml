@@ -217,6 +217,7 @@
   <string name="option_force_computer_move">Forza mossa del Computer</string>
   <string name="option_draw">Chiedi/Offri/Accetta la patta</string>
   <string name="option_select_book">Seleziona Libro delle Aperture</string>
+  <string name="option_pieces">Selezionare pezzi degli scacchi</string>
   <string name="option_manage_engines">Gestisci i motori scacchistici</string>
   <string name="option_select_engine">Seleziona il motore scacchistico</string>
   <string name="option_color_theme">Imposta il Tema del Colore</string>

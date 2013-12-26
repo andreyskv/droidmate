@@ -136,7 +136,7 @@ public abstract class ChessBoard extends View {
         if (isInEditMode())
             return;
 
-        Typeface chessFont = Typeface.createFromAsset(getContext().getAssets(), "fonts/ChessCases.ttf");
+        Typeface chessFont = Typeface.createFromAsset(getContext().getAssets(), "fonts/ChessMerida.ttf");
         whitePiecePaint.setTypeface(chessFont);
         blackPiecePaint.setTypeface(chessFont);
 
@@ -157,6 +157,14 @@ public abstract class ChessBoard extends View {
         for (int i = 0; i < 6; i++)
             moveMarkPaint.get(i).setColor(ct.getColor(ColorTheme.ARROW_0 + i));
 
+        invalidate();
+    }
+    
+    final void setPiecesFont(String name){
+        String fontPath = "fonts/Chess" + name + ".ttf";
+        Typeface chessFont = Typeface.createFromAsset(getContext().getAssets(), fontPath);
+        whitePiecePaint.setTypeface(chessFont);
+        blackPiecePaint.setTypeface(chessFont);
         invalidate();
     }
 

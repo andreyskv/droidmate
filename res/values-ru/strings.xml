@@ -216,6 +216,7 @@
   <string name="option_force_computer_move">Форсировать ход компьютера</string>
   <string name="option_draw">Заявить/Предложить/Принять ничью</string>
   <string name="option_select_book">Выбрать открываемую книгу</string>
+  <string name="option_pieces">Выбрать фигуры</string>
   <string name="option_manage_engines">Управление шахматными движками</string>
   <string name="option_select_engine">Выбрать движок</string>
   <string name="option_color_theme">Установить цветную тему</string>

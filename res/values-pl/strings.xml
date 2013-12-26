@@ -225,6 +225,7 @@ nie korzystasz aktywnie z programu.\</string>
   <string name="option_force_computer_move">Wymuś ruch komputera</string>
   <string name="option_draw">Zaproponuj/przyjmij remis</string>
   <string name="option_select_book">Wybierz książkę otwarć</string>
+  <string name="option_pieces">Wybierz szachy</string>
   <string name="option_manage_engines">Zarządzaj silnikami szachowymi</string>
   <string name="option_select_engine">Wybierz silnik szachowy</string>
   <string name="option_color_theme">Ustaw schemat kolorów</string>

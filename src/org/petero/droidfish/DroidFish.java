@@ -1272,6 +1272,9 @@ public class DroidFish extends Activity implements GUIInterface {
         case R.id.set_color_theme:
             showDialog(SET_COLOR_THEME_DIALOG);
             return true;
+        case R.id.set_pieces:
+            showDialog(SET_PIECES_DIALOG);
+            return true;
         case R.id.item_about:
             showDialog(ABOUT_DIALOG);
             return true;
@@ -1699,6 +1702,7 @@ public class DroidFish extends Activity implements GUIInterface {
     static private final int DELETE_NETWORK_ENGINE_DIALOG = 25;
     static private final int CLIPBOARD_DIALOG = 26;
     static private final int SELECT_FEN_FILE_DIALOG = 27;
+    static private final int SET_PIECES_DIALOG = 28;
 
     @Override
     protected Dialog onCreateDialog(int id) {
@@ -1716,6 +1720,7 @@ public class DroidFish extends Activity implements GUIInterface {
         case SELECT_PGN_FILE_SAVE_DIALOG:    return selectPgnFileSaveDialog();
         case SELECT_PGN_SAVE_NEWFILE_DIALOG: return selectPgnSaveNewFileDialog();
         case SET_COLOR_THEME_DIALOG:         return setColorThemeDialog();
+        case SET_PIECES_DIALOG:              return setPiecesDialog();
         case GAME_MODE_DIALOG:               return gameModeDialog();
         case MOVELIST_MENU_DIALOG:           return moveListMenuDialog();
         case THINKING_MENU_DIALOG:           return thinkingMenuDialog();
@@ -2279,6 +2284,20 @@ public class DroidFish extends Activity implements GUIInterface {
                 ctrl.prefsChanged(false);
                 dialog.dismiss();
                 Util.overrideFonts(findViewById(android.R.id.content));
+            }
+        });
+        return builder.create();
+    }
+    
+    private final Dialog setPiecesDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.option_pieces);
+        
+        final String[]  piecesNames = {"Cases", "Merida"};
+        builder.setSingleChoiceItems(piecesNames, 0, new DialogInterface.OnClickListener(){
+            public void onClick(DialogInterface dialog, int item) {     
+                cb.setPiecesFont(piecesNames[item]);     
+                dialog.dismiss();                
             }
         });
         return builder.create();

@@ -61,7 +61,7 @@ public class ColorTheme {
     };
     private static final String prefPrefix = "color_";
 
-    private final static int defaultTheme = 2;
+    private final static int defaultTheme = 5;
     final static int[] themeNames = {
         R.string.colortheme_original,
         R.string.colortheme_xboard,
@@ -100,7 +100,8 @@ public class ColorTheme {
     { // Scid Brown
         "#B58863",   "#F0D9B5",   "#FFFF0000", "#FF00FF00", "#FF000000", "#FFFFFFFF", "#FF666666",
         "#A01F1FFF", "#A0FF1F1F", "#501F1FFF", "#50FF1F1F", "#1E1F1FFF", "#28FF1F1F", "#FFFF0000",
-        "#FF808080", "#FFC0C000", "#FFF7FAE3", "#FF40260A"
+        "#FF808080", "#FFC0C000", "#FFF7FAE3", "#FF000000"
+        //"#FF808080", "#FFC0C000", "#FFF7FAE3", "#FF40260A"
     },
     { // Scid Green
         "#FF769656", "#FFEEEED2", "#FFFF0000", "#FF0000FF", "#FF000000", "#FFFFFFFF", "#FF666666",

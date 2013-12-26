@@ -223,6 +223,7 @@ préserver la batterie, ou de quitter <i>DroidFish</i> en utilisant la touche re
   <string name="option_force_computer_move">Forcer le coup de l\'ordinateur</string>
   <string name="option_draw">Proposer/Accepter la Nulle</string>
   <string name="option_select_book">Sélectionner le livre d\'ouverture</string>
+  <string name="option_pieces">Choisissez des pièces d\'échecs</string>
   <string name="option_manage_engines">Gérer les modules d\'échecs</string>
   <string name="option_select_engine">Sélectionner le module d\'analyse</string>
   <string name="option_color_theme">Définir le thème de couleurs</string>
