@@ -322,7 +322,7 @@
                 android:key="largeButtons" 
                 android:title="@string/prefs_largeButtons_title" 
                 android:summary="@string/prefs_largeButtons_summary" 
-                android:defaultValue="false">
+                android:defaultValue="true">
             </CheckBoxPreference>
             <PreferenceCategory
                 android:title="@string/prefs_custom_button_1">
@@ -499,7 +499,7 @@
             android:key="boardGestures"
             android:title="@string/prefs_boardGestures_title"
             android:summary="@string/prefs_boardGestures_summary"
-            android:defaultValue="true">
+            android:defaultValue="false">
         </CheckBoxPreference>
         <ListPreference
             android:key="scrollSensitivity"

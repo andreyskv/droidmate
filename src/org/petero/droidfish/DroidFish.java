@@ -922,7 +922,7 @@ public class DroidFish extends Activity implements GUIInterface {
         movesPerSession = getIntSetting("movesPerSession", 60);
         timeIncrement = getIntSetting("timeIncrement", 0);
 
-        boardGestures = settings.getBoolean("boardGestures", true);
+        boardGestures = settings.getBoolean("boardGestures", false);
         scrollSensitivity = Float.parseFloat(settings.getString("scrollSensitivity", "2"));
         invertScrollDirection = settings.getBoolean("invertScrollDirection", false);
         discardVariations = settings.getBoolean("discardVariations", false);
@@ -1032,26 +1032,26 @@ public class DroidFish extends Activity implements GUIInterface {
     }
 
     private final void updateButtons() {
-        boolean largeButtons = settings.getBoolean("largeButtons", false);
+        boolean largeButtons = settings.getBoolean("largeButtons", true);
         Resources r = getResources();
         int bWidth  = (int)Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 36, r.getDisplayMetrics()));
         int bHeight = (int)Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 32, r.getDisplayMetrics()));
         if (largeButtons) {
-            if (custom1ButtonActions.isEnabled() &&
-                custom2ButtonActions.isEnabled() &&
-                custom3ButtonActions.isEnabled()) {
-                Configuration config = getResources().getConfiguration();
-                if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    bWidth  = bWidth  * 6 / 5;
-                    bHeight = bHeight * 6 / 5;
-                } else {
-                    bWidth  = bWidth  * 5 / 4;
-                    bHeight = bHeight * 5 / 4;
-                }
-            } else {
-                bWidth  = bWidth  * 3 / 2;
-                bHeight = bHeight * 3 / 2;
-            }
+//            if (custom1ButtonActions.isEnabled() &&
+//                custom2ButtonActions.isEnabled() &&
+//                custom3ButtonActions.isEnabled()) {
+//                Configuration config = getResources().getConfiguration();
+//                if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    bWidth  = bWidth  * 6 / 5;
+//                    bHeight = bHeight * 6 / 5;
+//                } else {
+//                    bWidth  = bWidth  * 5 / 4;
+//                    bHeight = bHeight * 5 / 4;
+//                }
+//            } else {
+                bWidth  = bWidth  *  2;
+                bHeight = bHeight *  2;
+    //        }
         }
         SVG svg = SVGParser.getSVGFromResource(getResources(), R.raw.touch);
         setButtonData(custom1Button, bWidth, bHeight, custom1ButtonActions.getIcon(), svg);
@@ -2293,7 +2293,7 @@ public class DroidFish extends Activity implements GUIInterface {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.option_pieces);
         
-        final String[]  piecesNames = {"Cases", "Merida"};
+        final String[]  piecesNames = {"Merida", "Cases"};
         builder.setSingleChoiceItems(piecesNames, 0, new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog, int item) {     
                 cb.setPiecesFont(piecesNames[item]);     
