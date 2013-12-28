@@ -10,7 +10,7 @@
    <stop offset="0" style="stop-color:#000000;stop-opacity:0.26724139;" id="stop83948"/>
    <stop offset="1" style="stop-color:#000000;stop-opacity:1;" id="stop83950"/>
   </linearGradient>
-  <radialGradient fx="17.864586" fy="15.999999" cx="17.864586" cy="15.999999" gradientTransform="matrix(1.3714287,-7.8784533e-8,6.4012425e-8,1.1142857,-6.5000057,-1.828569)" id="radialGradient7850" r="17.5" gradientUnits="userSpaceOnUse">
+  <radialGradient fx="17.864586" fy="15.999999" cx="17.864586" cy="15.999999" gradientTransform="matrix(1.3714287,-7.8784533e-8,6.4012425e-8,1.1142857,-6.5000057,-1.828569)" id="radialGradient7850" r="25" gradientUnits="userSpaceOnUse">
    <stop offset="0" style="stop-color:#e0e0e0;stop-opacity:1;" id="stop12154"/>
    <stop offset="0.69999999" style="stop-color:#e0e0e0;stop-opacity:0.627451;" id="stop12156"/>
    <stop offset="1" style="stop-color:#e0e0e0;stop-opacity:0;" id="stop12158"/>
@@ -29,7 +29,7 @@
   </linearGradient>
  </defs>
  <metadata id="metadata3097"/>
- <rect width="35" x="0.5" y="0.5" ry="7" height="31" style="fill:url(#radialGradient7850);fill-opacity:1;fill-rule:evenodd;stroke:none" id="rect3100"/>
+ <rect width="35" x="0.5" y="0.5" ry="1" height="31" style="fill:url(#radialGradient7850);fill-opacity:1;fill-rule:evenodd;stroke:none" id="rect3100"/>
  <g id="g83160" transform="matrix(0.88018416,0,0,0.88018416,27.619216,44.723929)">
   <path style="fill:#180a7f;fill-opacity:1;fill-rule:evenodd;stroke:#180a7f;stroke-width:3pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" id="path644-8" d="m 376.12521,592.76672 c 0,12.36812 -10.02635,22.39447 -22.39447,22.39447 -12.36812,0 -22.39446,-10.02635 -22.39446,-22.39447 0,-12.36812 10.02634,-22.39446 22.39446,-22.39446 12.36812,0 22.39447,10.02634 22.39447,22.39446 z" transform="matrix(0.11649327,0,0,0.11649327,-62.206125,-93.330038)"/>
   <path style="fill:#180a7f;fill-opacity:1;fill-rule:evenodd;stroke:#180a7f;stroke-width:3pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" id="path645-7" d="m 376.12521,592.76672 c 0,12.36812 -10.02635,22.39447 -22.39447,22.39447 -12.36812,0 -22.39446,-10.02635 -22.39446,-22.39447 0,-12.36812 10.02634,-22.39446 22.39446,-22.39446 12.36812,0 22.39447,10.02634 22.39447,22.39446 z" transform="matrix(0.11649327,0,0,0.11649327,-55.802697,-93.330038)"/>

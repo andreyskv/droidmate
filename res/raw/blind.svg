@@ -2,12 +2,12 @@
 <!-- Converted with SVG Converter - Version 0.9.5 (Compiled Mon May 30 09:18:17 2011) - Copyright (C) 2011 Nokia -->
 <svg xmlns="http://www.w3.org/2000/svg" width="36" version="1.1" height="32" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="tiny" id="svg3092">
  <defs id="defs3094">
-  <radialGradient fx="17.864586" fy="15.999999" cx="17.864586" cy="15.999999" gradientTransform="matrix(1.3714287,-7.8784533e-8,6.4012425e-8,1.1142857,-6.5000057,-1.828569)" id="radialGradient4010" r="17.5" gradientUnits="userSpaceOnUse">
+  <radialGradient fx="17.864586" fy="15.999999" cx="17.864586" cy="15.999999" gradientTransform="matrix(1.3714287,-7.8784533e-8,6.4012425e-8,1.1142857,-6.5000057,-1.828569)" id="radialGradient4010" r="25" gradientUnits="userSpaceOnUse">
    <stop offset="0" style="stop-color:#e0e0e0;stop-opacity:1;" id="stop7758"/>
    <stop offset="0.69999999" style="stop-color:#e0e0e0;stop-opacity:0.627451;" id="stop7760"/>
    <stop offset="1" style="stop-color:#e0e0e0;stop-opacity:0;" id="stop7762"/>
   </radialGradient>
-  <radialGradient fx="17.864586" fy="15.999999" cx="17.864586" cy="15.999999" gradientTransform="matrix(1.3714287,-7.8784533e-8,6.4012425e-8,1.1142857,-6.5000057,-1.828569)" id="radialGradient7850" r="17.5" gradientUnits="userSpaceOnUse">
+  <radialGradient fx="17.864586" fy="15.999999" cx="17.864586" cy="15.999999" gradientTransform="matrix(1.3714287,-7.8784533e-8,6.4012425e-8,1.1142857,-6.5000057,-1.828569)" id="radialGradient7850" r="25" gradientUnits="userSpaceOnUse">
    <stop offset="0" style="stop-color:#e0e0e0;stop-opacity:1;" id="stop12154"/>
    <stop offset="0.69999999" style="stop-color:#e0e0e0;stop-opacity:0.627451;" id="stop12156"/>
    <stop offset="1" style="stop-color:#e0e0e0;stop-opacity:0;" id="stop12158"/>
@@ -121,7 +121,7 @@
   </linearGradient>
  </defs>
  <metadata id="metadata3097"/>
- <rect width="35" x="0.5" y="0.5" ry="7" height="31" style="fill:url(#radialGradient7850);fill-opacity:1;fill-rule:evenodd;stroke:none" id="rect3100"/>
+ <rect width="35" x="0.5" y="0.5" ry="1" height="31" style="fill:url(#radialGradient7850);fill-opacity:1;fill-rule:evenodd;stroke:none" id="rect3100"/>
  <g id="g3186" transform="matrix(0.1850651,0,0,0.1850651,-0.504991,-3.8354055)">
   <path style="fill:url(#radialGradient1238);fill-rule:evenodd;stroke:none" id="path1237" d="m 1170.0161,146.17771 c 0,73.18336 -60.6684,132.57858 -135.4204,132.57858 -74.75231,0 -135.42074,-59.39522 -135.42074,-132.57858 0,-73.183391 60.66843,-132.578585 135.42074,-132.578585 74.752,0 135.4204,59.395194 135.4204,132.578585 z"/>
   <g id="g890">

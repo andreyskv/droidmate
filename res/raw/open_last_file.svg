@@ -2,7 +2,7 @@
 <!-- Converted with SVG Converter - Version 0.9.5 (Compiled Mon May 30 09:18:17 2011) - Copyright (C) 2011 Nokia -->
 <svg xmlns="http://www.w3.org/2000/svg" width="36" version="1.1" height="32" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="tiny" id="svg3092">
  <defs id="defs3094">
-  <radialGradient fx="17.864586" fy="15.999999" cx="17.864586" cy="15.999999" gradientTransform="matrix(1.3714287,-7.8784533e-8,6.4012425e-8,1.1142857,-6.5000057,-1.828569)" id="radialGradient7850" r="17.5" gradientUnits="userSpaceOnUse">
+  <radialGradient fx="17.864586" fy="15.999999" cx="17.864586" cy="15.999999" gradientTransform="matrix(1.3714287,-7.8784533e-8,6.4012425e-8,1.1142857,-6.5000057,-1.828569)" id="radialGradient7850" r="25" gradientUnits="userSpaceOnUse">
    <stop offset="0" style="stop-color:#e0e0e0;stop-opacity:1;" id="stop12154"/>
    <stop offset="0.69999999" style="stop-color:#e0e0e0;stop-opacity:0.627451;" id="stop12156"/>
    <stop offset="1" style="stop-color:#e0e0e0;stop-opacity:0;" id="stop12158"/>
@@ -149,7 +149,7 @@
   </linearGradient>
  </defs>
  <metadata id="metadata3097"/>
- <rect width="35" x="0.5" y="0.5" ry="7" height="31" style="fill:url(#radialGradient7850);fill-opacity:1;fill-rule:evenodd;stroke:none" id="rect3100"/>
+ <rect width="35" x="0.5" y="0.5" ry="1" height="31" style="fill:url(#radialGradient7850);fill-opacity:1;fill-rule:evenodd;stroke:none" id="rect3100"/>
  <g id="g4313" transform="matrix(0.95024489,0,0,0.95024489,1.5128396,1.3836791)">
   <path style="fill:url(#linearGradient4337);fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient4339);stroke-width:0.47695518px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" id="path1315" d="M 6.6609738,22.791085 10.243975,4.7436453 31.903023,10.030611 25.867015,27.550253 6.6609738,22.791085 z"/>
   <rect width="20.613079" x="10.49484" y="0.68193728" height="16.208311" style="fill:url(#linearGradient4341);fill-opacity:1;stroke:#aaaaaa;stroke-width:0.51017356;stroke-opacity:1" id="rect1395" transform="matrix(0.95501673,0.29655192,-0.24104404,0.97051418,0,0)"/>

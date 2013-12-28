@@ -2,7 +2,7 @@
 <!-- Converted with SVG Converter - Version 0.9.5 (Compiled Mon May 30 09:18:17 2011) - Copyright (C) 2011 Nokia -->
 <svg xmlns="http://www.w3.org/2000/svg" width="36" version="1.1" height="32" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="tiny" id="svg3092">
  <defs id="defs3094">
-  <radialGradient fx="17.864586" fy="15.999999" cx="17.864586" cy="15.999999" gradientTransform="matrix(1.3714287,-7.8784533e-8,6.4012425e-8,1.1142857,-6.5000057,-1.828569)" id="radialGradient7850" r="17.5" gradientUnits="userSpaceOnUse">
+  <radialGradient fx="17.864586" fy="15.999999" cx="17.864586" cy="15.999999" gradientTransform="matrix(1.3714287,-7.8784533e-8,6.4012425e-8,1.1142857,-6.5000057,-1.828569)" id="radialGradient7850" r="25" gradientUnits="userSpaceOnUse">
    <stop offset="0" style="stop-color:#e0e0e0;stop-opacity:1;" id="stop12154"/>
    <stop offset="0.69999999" style="stop-color:#e0e0e0;stop-opacity:0.627451;" id="stop12156"/>
    <stop offset="1" style="stop-color:#e0e0e0;stop-opacity:0;" id="stop12158"/>
@@ -29,7 +29,7 @@
   </linearGradient>
  </defs>
  <metadata id="metadata3097"/>
- <rect width="35" x="0.5" y="0.5" ry="7" height="31" style="fill:url(#radialGradient7850);fill-opacity:1;fill-rule:evenodd;stroke:none" id="rect3100"/>
+ <rect width="35" x="0.5" y="0.5" ry="1" height="31" style="fill:url(#radialGradient7850);fill-opacity:1;fill-rule:evenodd;stroke:none" id="rect3100"/>
  <path style="font-size:12px;fill:none;stroke:#007fd2;stroke-width:2.83978367;stroke-opacity:1" id="path635" d="m 7,10.074565 13.565675,0"/>
  <path style="font-size:12px;fill:none;stroke:#007fd2;stroke-width:2.32854366;stroke-opacity:1" id="path637" d="M 13.942133,10.074565 14.050717,22.407284 21,22.407299"/>
  <path style="font-size:12px;fill:#dadaff;fill-opacity:1;fill-rule:evenodd;stroke:#9292ff;stroke-width:0.81171298;stroke-opacity:1" id="path632" d="m 19.942134,7 0,6.5927 L 27,13.5927 27,7 19.942134,7 z"/>

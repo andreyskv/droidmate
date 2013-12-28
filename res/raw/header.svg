@@ -48,7 +48,7 @@
        cy="15.999999"
        gradientTransform="matrix(1.3714287,-7.8784533e-8,6.4012425e-8,1.1142857,-6.5000057,-1.828569)"
        id="radialGradient7850"
-       r="17.5"
+       r="25"
        gradientUnits="userSpaceOnUse">
       <stop
          offset="0"
@@ -429,7 +429,7 @@
      width="35"
      x="0.5"
      y="0.5"
-     ry="7"
+     ry="1"
      height="31"
      style="fill:url(#radialGradient7850);fill-opacity:1;fill-rule:evenodd;stroke:none"
      id="rect3100" />
