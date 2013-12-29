@@ -127,6 +127,7 @@ you are not actively using the program.\
     <string name="toggle_pgn_comments">Toggle Comments</string>
     <string name="toggle_pgn_headers">Toggle Headers</string>
     <string name="toggle_analysis">Toggle Engine Analysis</string>
+    <string name="toggle_useranalysis">Toggle User Analysis</string>
     <string name="toggle_large_buttons">Toggle Large Buttons</string>
     <string name="toggle_blind_mode">Toggle Blindfold Mode</string>
     <string name="cancel">Cancel</string>
@@ -612,6 +613,7 @@ you are not actively using the program.\
         <item>Disabled</item>
         <item>@string/flip_board</item>
         <item>@string/toggle_analysis</item>
+        <item>@string/toggle_useranalysis</item>
         <item>@string/toggle_show_thinking</item>
         <item>@string/toggle_book_hints</item>
         <item>@string/toggle_pgn_variations</item>
@@ -626,6 +628,7 @@ you are not actively using the program.\
         <item></item>
         <item>flipboard</item>
         <item>toggleAnalysis</item>
+        <item>toggleUserAnalysis</item>
         <item>showThinking</item>
         <item>bookHints</item>
         <item>viewVariations</item>

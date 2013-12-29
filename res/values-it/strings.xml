@@ -105,6 +105,7 @@
   <string name="toggle_pgn_comments">Passa ai Commenti</string>
   <string name="toggle_pgn_headers">Passa alle Intestazioni</string>
   <string name="toggle_analysis">Passa all\'Analisi del Motore</string>
+  <string name="toggle_useranalysis">Passa all\'Analisi del utente</string>
   <string name="toggle_large_buttons">Passa ai Pulsanti Grandi</string>
   <string name="toggle_blind_mode">Passa alla modalità \'alla cieca\'</string>
   <string name="cancel">Annulla</string>
@@ -583,6 +584,7 @@
     <item>Disabilitato</item>
     <item>@string/flip_board</item>
     <item>@string/toggle_analysis</item>
+    <item>@string/toggle_useranalysis</item>
     <item>@string/toggle_show_thinking</item>
     <item>@string/toggle_book_hints</item>
     <item>@string/toggle_pgn_variations</item>
@@ -596,7 +598,8 @@
   <string-array name="button_action_values">
     <item></item>
     <item>flipboard</item>
-    <item>toggleAnalysis</item>
+    <item>toggleAnalysis</item>    
+    <item>toggleUserAnalysis</item>
     <item>showThinking</item>
     <item>bookHints</item>
     <item>viewVariations</item>
@@ -605,6 +608,6 @@
     <item>largeButtons</item>
     <item>blindMode</item>
     <item>loadLastFile</item>
-    <item>selectEngine</item>
+    <item>selectEngine</item>    
   </string-array>
 </resources>

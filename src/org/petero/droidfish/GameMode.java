@@ -65,6 +65,10 @@ public class GameMode {
     public final boolean analysisMode() {
         return modeNr == ANALYSIS;
     }
+    
+    public final boolean editMode() {
+        return modeNr == EDIT_GAME;
+    }
 
     /** Return true if it is a humans turn to move. */
     public final boolean humansTurn(boolean whiteMove) {

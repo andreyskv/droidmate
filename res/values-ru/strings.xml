@@ -104,6 +104,7 @@
   <string name="toggle_pgn_comments">Переключатель комментариев</string>
   <string name="toggle_pgn_headers">Переключатель заголовков</string>
   <string name="toggle_analysis">Переключатель анализа движка</string>
+  <string name="toggle_useranalysis">Переключатель анализа пользователя</string>
   <string name="toggle_large_buttons">Переключатель больших кнопок</string>
   <string name="toggle_blind_mode">Переключатель режима игры в слепую</string>
   <string name="cancel">Отмена</string>
@@ -582,6 +583,7 @@
     <item>Отключен</item>
     <item>@string/flip_board</item>
     <item>@string/toggle_analysis</item>
+    <item>@string/toggle_useranalysis</item>
     <item>@string/toggle_show_thinking</item>
     <item>@string/toggle_book_hints</item>
     <item>@string/toggle_pgn_variations</item>
@@ -596,6 +598,7 @@
     <item></item>
     <item>flipboard</item>
     <item>toggleAnalysis</item>
+    <item>toggleUserAnalysis</item>
     <item>showThinking</item>
     <item>bookHints</item>
     <item>viewVariations</item>

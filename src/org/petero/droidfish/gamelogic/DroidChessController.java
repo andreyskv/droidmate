@@ -66,6 +66,7 @@ public class DroidChessController {
     private Move promoteMove;
 
     private int searchId;
+    private byte[] rememberGame;
 
     /** Constructor. */
     public DroidChessController(GUIInterface gui, PgnToken.PgnTokenReceiver gameTextListener, PGNOptions options) {
@@ -120,6 +121,16 @@ public class DroidChessController {
     /** Set game mode. */
     public final synchronized void setGameMode(GameMode newMode) {
         if (!gameMode.equals(newMode)) {
+            
+            if(newMode.getModeNr() == GameMode.EDIT_GAME){
+                  rememberGame = toByteArray();
+            }
+            else{
+                if(rememberGame != null)
+                    fromByteArray(rememberGame, 5);        		
+                
+            }
+            
             if (newMode.humansTurn(game.currPos().whiteMove))
                 searchId++;
             gameMode = newMode;
@@ -141,6 +152,12 @@ public class DroidChessController {
     public final boolean analysisMode() {
         return gameMode.analysisMode();
     }
+    
+        /** Return true if game mode is analysis. */
+    public final boolean editMode() {
+        return gameMode.editMode();
+    }
+
 
     /** Set engine book options. */
     public final synchronized void setBookOptions(BookOptions options) {

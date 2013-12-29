@@ -319,6 +319,26 @@ public class DroidFish extends Activity implements GUIInterface {
                 }
             });
             addAction(new UIAction() {
+                public String getId() { return "toggleUserAnalysis"; }
+                public int getName() { return R.string.toggle_useranalysis; }
+                public int getIcon() { return R.raw.header; }
+                public boolean enabled() { return true; }
+                private int oldGameModeType = GameMode.EDIT_GAME;
+                public void run() {
+                    int gameModeType;
+                    if (ctrl.editMode()) {
+                        gameModeType = oldGameModeType;
+                    } else {
+                        oldGameModeType = ctrl.getGameMode().getModeNr();
+                        gameModeType = GameMode.EDIT_GAME;
+                    }
+                    newGameMode(gameModeType);
+                    setBoardFlip(true);
+                }
+            });
+            
+            
+            addAction(new UIAction() {
                 public String getId() { return "largeButtons"; }
                 public int getName() { return R.string.toggle_large_buttons; }
                 public int getIcon() { return R.raw.magnify; }

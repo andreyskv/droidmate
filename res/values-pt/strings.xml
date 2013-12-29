@@ -113,6 +113,7 @@ não estiver usando o programa diretamente.\</string>
   <string name="toggle_pgn_comments">Mostrar/Ocultar comentários</string>
   <string name="toggle_pgn_headers">Mostrar/Ocultar cabeçalhos</string>
   <string name="toggle_analysis">Mostrar/Ocultar análise do software</string>
+  <string name="toggle_useranalysis">Mostrar/Ocultar análise do usuário</string>
   <string name="toggle_large_buttons">Mostrar/Ocultar botões grandes</string>
   <string name="toggle_blind_mode">Trocar modo às cegas</string>
   <string name="cancel">Cancelar</string>
@@ -591,6 +592,7 @@ não estiver usando o programa diretamente.\</string>
     <item>Desabilitado</item>
     <item>@string/flip_board</item>
     <item>@string/toggle_analysis</item>
+    <item>@string/toggle_useranalysis</item>
     <item>@string/toggle_show_thinking</item>
     <item>@string/toggle_book_hints</item>
     <item>@string/toggle_pgn_variations</item>
@@ -605,6 +607,7 @@ não estiver usando o programa diretamente.\</string>
     <item></item>
     <item>flipboard</item>
     <item>toggleAnalysis</item>
+    <item>toggleUserAnalysis</item>
     <item>showThinking</item>
     <item>bookHints</item>
     <item>viewVariations</item>

@@ -111,6 +111,7 @@ préserver la batterie, ou de quitter <i>DroidFish</i> en utilisant la touche re
   <string name="toggle_pgn_comments">Afficher/Masquer les commentaires</string>
   <string name="toggle_pgn_headers">Afficher/Masquer les en-têtes</string>
   <string name="toggle_analysis">Afficher/Masquer les analyses du module</string>
+  <string name="toggle_useranalysis">Afficher les analyses utilisateur</string>  
   <string name="toggle_large_buttons">Afficher/Masquer les grands boutons</string>
   <string name="toggle_blind_mode">Activer/Désactiver le jeu à l\'aveugle</string>
   <string name="cancel">Annuler</string>
@@ -589,6 +590,7 @@ préserver la batterie, ou de quitter <i>DroidFish</i> en utilisant la touche re
     <item>Désactivé</item>
     <item>@string/flip_board</item>
     <item>@string/toggle_analysis</item>
+    <item>@string/toggle_useranalysis</item>
     <item>@string/toggle_show_thinking</item>
     <item>@string/toggle_book_hints</item>
     <item>@string/toggle_pgn_variations</item>
@@ -603,6 +605,7 @@ préserver la batterie, ou de quitter <i>DroidFish</i> en utilisant la touche re
     <item></item>
     <item>flipboard</item>
     <item>toggleAnalysis</item>
+    <item>toggleUserAnalysis</item>
     <item>showThinking</item>
     <item>bookHints</item>
     <item>viewVariations</item>

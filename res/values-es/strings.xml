@@ -112,6 +112,7 @@ Si está usted utilizando la batería, se recomienda que cambie los ajustes para
   <string name="toggle_pgn_comments">Activar comentarios</string>
   <string name="toggle_pgn_headers">Activar cabeceras</string>
   <string name="toggle_analysis">Activar análisis del motor</string>
+  <string name="toggle_useranalysis">Activar análisis usuario</string>
   <string name="toggle_large_buttons">Activar botones grandes</string>
   <string name="toggle_blind_mode">Conectar modo a la ciega</string>
   <string name="cancel">Cancelar</string>
@@ -590,6 +591,7 @@ Si está usted utilizando la batería, se recomienda que cambie los ajustes para
     <item>Desactivado</item>
     <item>@string/flip_board</item>
     <item>@string/toggle_analysis</item>
+    <item>@string/toggle_useranalysis</item>
     <item>@string/toggle_show_thinking</item>
     <item>@string/toggle_book_hints</item>
     <item>@string/toggle_pgn_variations</item>
@@ -604,6 +606,7 @@ Si está usted utilizando la batería, se recomienda que cambie los ajustes para
     <item></item>
     <item>flipboard</item>
     <item>toggleAnalysis</item>
+    <item>toggleUserAnalysis</item>
     <item>showThinking</item>
     <item>bookHints</item>
     <item>viewVariations</item>

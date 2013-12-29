@@ -114,6 +114,7 @@ wenn Sie es nicht aktiv nutzen.\
   <string name="toggle_pgn_comments">Kommentare an/aus</string>
   <string name="toggle_pgn_headers">Partie-Informationen an/aus</string>
   <string name="toggle_analysis">Engine-Analyse an/aus</string>
+  <string name="toggle_useranalysis">Benutzer-Analyse an/aus</string>  
   <string name="toggle_large_buttons">Große Tasten ein/aus</string>
   <string name="toggle_blind_mode">Blindspiel-Modus an/aus</string>
   <string name="cancel">Abbrechen</string>
@@ -594,6 +595,7 @@ wenn Sie es nicht aktiv nutzen.\
     <item>Deaktiviert</item>
     <item>@string/flip_board</item>
     <item>@string/toggle_analysis</item>
+    <item>@string/toggle_useranalysis</item>
     <item>@string/toggle_show_thinking</item>
     <item>@string/toggle_book_hints</item>
     <item>@string/toggle_pgn_variations</item>
@@ -608,6 +610,7 @@ wenn Sie es nicht aktiv nutzen.\
     <item></item>
     <item>flipboard</item>
     <item>toggleAnalysis</item>
+    <item>toggleUserAnalysis</item>
     <item>showThinking</item>
     <item>bookHints</item>
     <item>viewVariations</item>

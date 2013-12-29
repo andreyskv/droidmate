@@ -112,6 +112,7 @@ daadwerkelijk af te sluiten (gebruik hiervoor de return toets op uw telefoon).\<
   <string name="toggle_pgn_comments">Commentaar aan/uit</string>
   <string name="toggle_pgn_headers">Kopteksten aan/uit</string>
   <string name="toggle_analysis">Engine-analyse aan/uit</string>
+  <string name="toggle_useranalysis">Gebruiker-analyse aan/uit</string>
   <string name="toggle_large_buttons">Grote knoppen aan/uit</string>
   <string name="toggle_blind_mode">Blindschaak mode aan/uit</string>
   <string name="cancel">Annuleren</string>
@@ -590,6 +591,7 @@ daadwerkelijk af te sluiten (gebruik hiervoor de return toets op uw telefoon).\<
     <item>Uitgeschakeld</item>
     <item>@string/flip_board</item>
     <item>@string/toggle_analysis</item>
+    <item>@string/toggle_useranalysis</item>
     <item>@string/toggle_show_thinking</item>
     <item>@string/toggle_book_hints</item>
     <item>@string/toggle_pgn_variations</item>
@@ -604,6 +606,7 @@ daadwerkelijk af te sluiten (gebruik hiervoor de return toets op uw telefoon).\<
     <item></item>
     <item>flipboard</item>
     <item>toggleAnalysis</item>
+    <item>toggleUserAnalysis</item>
     <item>showThinking</item>
     <item>bookHints</item>
     <item>viewVariations</item>

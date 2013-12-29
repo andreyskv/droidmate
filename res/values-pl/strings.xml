@@ -113,6 +113,7 @@ nie korzystasz aktywnie z programu.\</string>
   <string name="toggle_pgn_comments">Włącz/wyłącz komentarze</string>
   <string name="toggle_pgn_headers">Włącz/wyłącz nagłówki</string>
   <string name="toggle_analysis">Włącz/wyłącz analizę przez silnik</string>
+  <string name="toggle_useranalysis">Włącz/wyłącz analizę przez użytkownik</string>
   <string name="toggle_large_buttons">Włącz/wyłącz duże przyciski</string>
   <string name="toggle_blind_mode">Włącz/wyłącz tryb \'na ślepo\'</string>
   <string name="cancel">Anuluj</string>
@@ -591,6 +592,7 @@ nie korzystasz aktywnie z programu.\</string>
     <item>Wyłączone</item>
     <item>@string/flip_board</item>
     <item>@string/toggle_analysis</item>
+    <item>@string/toggle_useranalysis</item>
     <item>@string/toggle_show_thinking</item>
     <item>@string/toggle_book_hints</item>
     <item>@string/toggle_pgn_variations</item>
@@ -605,6 +607,7 @@ nie korzystasz aktywnie z programu.\</string>
     <item></item>
     <item>flipboard</item>
     <item>toggleAnalysis</item>
+    <item>toggleUserAnalysis</item>
     <item>showThinking</item>
     <item>bookHints</item>
     <item>viewVariations</item>
