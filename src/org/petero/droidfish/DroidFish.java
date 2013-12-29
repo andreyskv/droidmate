@@ -1054,21 +1054,24 @@ public class DroidFish extends Activity implements GUIInterface {
     //        }
         }
         SVG svg = SVGParser.getSVGFromResource(getResources(), R.raw.touch);
-        setButtonData(custom1Button, bWidth, bHeight, custom1ButtonActions.getIcon(), svg);
-        setButtonData(custom2Button, bWidth, bHeight, custom2ButtonActions.getIcon(), svg);
-        setButtonData(custom3Button, bWidth, bHeight, custom3ButtonActions.getIcon(), svg);
-        setButtonData(modeButton, bWidth, bHeight, R.raw.mode, svg);
-        setButtonData(undoButton, bWidth, bHeight, R.raw.left, svg);
-        setButtonData(redoButton, bWidth, bHeight, R.raw.right, svg);
+        setButtonData(custom1Button, bWidth, bHeight, custom1ButtonActions.getIcon(), svg, true);
+        setButtonData(custom2Button, bWidth, bHeight, custom2ButtonActions.getIcon(), svg, true);
+        setButtonData(custom3Button, bWidth, bHeight, custom3ButtonActions.getIcon(), svg, true);
+        setButtonData(modeButton, bWidth, bHeight, R.raw.mode, svg, false);
+        setButtonData(undoButton, bWidth, bHeight, R.raw.left, svg, false);
+        setButtonData(redoButton, bWidth, bHeight, R.raw.right, svg, false);
     }
 
     private final void setButtonData(ImageButton button, int bWidth, int bHeight,
-                                     int svgResId, SVG touched) {
+                                     int svgResId, SVG touched, Boolean isToggle) {
         SVG svg = SVGParser.getSVGFromResource(getResources(), svgResId);
         button.setBackgroundDrawable(new SVGPictureDrawable(svg));
 
         StateListDrawable sld = new StateListDrawable();
-        sld.addState(new int[]{android.R.attr.state_pressed}, new SVGPictureDrawable(touched));
+        if (isToggle)
+            sld.addState(new int[]{android.R.attr.state_selected}, new SVGPictureDrawable(touched));
+        else
+            sld.addState(new int[]{android.R.attr.state_pressed}, new SVGPictureDrawable(touched));
         button.setImageDrawable(sld);
 
         LayoutParams lp = button.getLayoutParams();

@@ -63,13 +63,14 @@ public class ButtonActions {
         this.button = button;
         button.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { 
+                v.setSelected(!v.isSelected());
                 if (mainAction != null) {
                     if (mainAction.enabled())
                         mainAction.run();
-                } else {
-                    showMenu(activity);
-                }
+                } else { 
+                   showMenu(activity);
+                }                
             }
         });
         button.setOnLongClickListener(new OnLongClickListener() {
