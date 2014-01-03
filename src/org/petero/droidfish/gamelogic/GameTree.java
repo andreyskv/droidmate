@@ -108,11 +108,12 @@ public class GameTree {
         private String header = "";
         private int prevType = PgnToken.EOF;
 
-        final String getPgnString() {
+        final String getPgnString(Boolean excludeHeader) {
             StringBuilder ret = new StringBuilder(4096);
-            ret.append(header);
-            ret.append('\n');
-
+            if (!excludeHeader){
+                ret.append(header);
+                ret.append('\n');
+            }
             String[] words = sb.toString().split(" ");
             int currLineLength = 0;
             final int arrLen = words.length;
@@ -124,7 +125,8 @@ public class GameTree {
                         ret.append(word);
                         currLineLength = wordLen;
                     } else if (currLineLength + 1 + wordLen >= 80) {
-                        ret.append('\n');
+                        if (!excludeHeader)
+                            ret.append('\n');
                         ret.append(word);
                         currLineLength = wordLen;
                     } else {
@@ -189,7 +191,7 @@ public class GameTree {
                 sb.append(token);
                 break;
             case PgnToken.SYMBOL:
-                if ((prevType != PgnToken.RIGHT_BRACKET) && (prevType != PgnToken.LEFT_BRACKET))
+                if ((prevType != PgnToken.RIGHT_BRACKET) && (prevType != PgnToken.LEFT_BRACKET) && (prevType != PgnToken.PERIOD))
                     sb.append(' ');
                 sb.append(token);
                 break;
@@ -268,13 +270,14 @@ public class GameTree {
         PgnText pgnText = new PgnText();
         options.exp.pgnPromotions = true;
         options.exp.pieceType = PGNOptions.PT_ENGLISH;
-        pgnTreeWalker(options, pgnText);
-        return pgnText.getPgnString();
+        pgnTreeWalker(options, pgnText, null);
+        return pgnText.getPgnString(options.exp.excludeheaders);
     }
 
     /** Walks the game tree in PGN export order. */
-    public final void pgnTreeWalker(PGNOptions options, PgnToken.PgnTokenReceiver out) {
+    public final void pgnTreeWalker(PGNOptions options, PgnToken.PgnTokenReceiver out, String gameOpening) {
         // Go to end of mainline to evaluate PGN result string.
+
         String pgnResultString;
         {
             List<Integer> currPath = new ArrayList<Integer>();
@@ -293,32 +296,39 @@ public class GameTree {
                 goForward(currPath.get(i), false);
         }
 
-        // Write seven tag roster
-        addTagPair(out, "Event",  event);
-        addTagPair(out, "Site",   site);
-        addTagPair(out, "Date",   date);
-        addTagPair(out, "Round",  round);
-        addTagPair(out, "White",  white);
-        addTagPair(out, "Black",  black);
-        addTagPair(out, "Result", pgnResultString);
+        if (options.view.headers) 
+        { 
+            // Write seven tag roster                
+            addTagPair(out, "Event",  event);
+            addTagPair(out, "Site",   site);
+            addTagPair(out, "Date",   date);
+            addTagPair(out, "Round",  round);
+            addTagPair(out, "White",  white);
+            addTagPair(out, "Black",  black);
+            addTagPair(out, "Result", pgnResultString);
+           // addTagPair(out, "Opening", pgnResultString);
 
-        // Write special tag pairs
-        String fen = TextIO.toFEN(startPos);
-        if (!fen.equals(TextIO.startPosFEN)) {
-            addTagPair(out, "FEN", fen);
-            addTagPair(out, "Setup", "1");
+            // Write special tag pairs
+
+            String fen = TextIO.toFEN(startPos);
+            if (!fen.equals(TextIO.startPosFEN)) {
+                addTagPair(out, "FEN", fen);
+                addTagPair(out, "Setup", "1");
+            }
+            if (!timeControl.equals("?"))
+                addTagPair(out, "TimeControl", timeControl);
+            if (!whiteTimeControl.equals("?"))
+                addTagPair(out, "WhiteTimeControl", whiteTimeControl);
+            if (!blackTimeControl.equals("?"))
+                addTagPair(out, "BlackTimeControl", blackTimeControl);
+
+            // Write other non-standard tag pairs
+            for (int i = 0; i < tagPairs.size(); i++)
+                addTagPair(out, tagPairs.get(i).tagName, tagPairs.get(i).tagValue);
         }
-        if (!timeControl.equals("?"))
-            addTagPair(out, "TimeControl", timeControl);
-        if (!whiteTimeControl.equals("?"))
-            addTagPair(out, "WhiteTimeControl", whiteTimeControl);
-        if (!blackTimeControl.equals("?"))
-            addTagPair(out, "BlackTimeControl", blackTimeControl);
-
-        // Write other non-standard tag pairs
-        for (int i = 0; i < tagPairs.size(); i++)
-            addTagPair(out, tagPairs.get(i).tagName, tagPairs.get(i).tagValue);
-
+          
+        if (gameOpening != null)  
+            out.processToken(null, PgnToken.SYMBOL, gameOpening+'\n');
         // Write moveText section
         MoveNumber mn = new MoveNumber(startPos.fullMoveCounter, startPos.whiteMove);
         Node.addPgnData(out, rootNode, mn.prev(), options);

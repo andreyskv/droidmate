@@ -22,6 +22,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import java.util.HashMap;
+import java.util.Map;
 
 public final class Util {
     public final static String boldStart;
@@ -138,4 +140,22 @@ public final class Util {
             ((TextView) v).setTextColor(fg);
         }
     }
+    
+    public static  Map<String, String>  LoadOpeningsMap(Object obj) {
+        InputStream inStream  = obj.getClass().getResourceAsStream("/openings");
+        InputStreamReader inFile = new InputStreamReader(inStream);
+        BufferedReader inBuf = new BufferedReader(inFile);
+        String line;        
+        Map<String, String> openingsMap = new HashMap<String, String>();
+        try {
+            while ((line = inBuf.readLine()) != null){       
+                String notation = inBuf.readLine();         
+                openingsMap.put(notation, line);               
+            }
+             inBuf.close();
+        } catch (IOException e){}
+                      
+        return openingsMap;
+    }
+    
 }

@@ -305,13 +305,13 @@ public class DroidFish extends Activity implements GUIInterface {
                 public int getName() { return R.string.toggle_analysis; }
                 public int getIcon() { return R.raw.analyze; }
                 public boolean enabled() { return true; }
-                private int oldGameModeType = GameMode.EDIT_GAME;
+                //private int oldGameModeType = GameMode.EDIT_GAME;
                 public void run() {
                     int gameModeType;
                     if (ctrl.analysisMode()) {
-                        gameModeType = oldGameModeType;
+                        gameModeType = GameMode.TWO_PLAYERS; // oldGameModeType;
                     } else {
-                        oldGameModeType = ctrl.getGameMode().getModeNr();
+                  //      oldGameModeType = ctrl.getGameMode().getModeNr();
                         gameModeType = GameMode.ANALYSIS;
                     }
                     newGameMode(gameModeType);
@@ -924,8 +924,8 @@ public class DroidFish extends Activity implements GUIInterface {
 
         mShowThinking = settings.getBoolean("showThinking", false);
         mShowStats = settings.getBoolean("showStats", true);
-        mWhiteBasedScores = settings.getBoolean("whiteBasedScores", false);
-        maxNumArrows = getIntSetting("thinkingArrows", 2);
+        mWhiteBasedScores = settings.getBoolean("whiteBasedScores", true);
+        maxNumArrows = getIntSetting("thinkingArrows", 5);
         mShowBookHints = settings.getBoolean("bookHints", false);
 
         mEngineThreads = getIntSetting("threads", 1);
@@ -945,7 +945,7 @@ public class DroidFish extends Activity implements GUIInterface {
         boardGestures = settings.getBoolean("boardGestures", false);
         scrollSensitivity = Float.parseFloat(settings.getString("scrollSensitivity", "2"));
         invertScrollDirection = settings.getBoolean("invertScrollDirection", false);
-        discardVariations = settings.getBoolean("discardVariations", false);
+        discardVariations = settings.getBoolean("discardVariations", true);
         Util.setFullScreenMode(this, settings);
         useWakeLock = settings.getBoolean("wakeLock", false);
         setWakeLock(useWakeLock);
@@ -3386,8 +3386,8 @@ public class DroidFish extends Activity implements GUIInterface {
                     col0 = false;
                     newLine();
                 } else {
-                    sb.clear();
-                    paraBold = false;
+                    //sb.clear();
+                    //paraBold = false;
                 }
             }
             if (pendingNewLine) {
@@ -3411,7 +3411,7 @@ public class DroidFish extends Activity implements GUIInterface {
                 break;
             case PgnToken.PERIOD:
                 sb.append('.');
-                col0 = false;
+                col0 = true;
                 break;
             case PgnToken.ASTERISK:      sb.append(" *");  col0 = false; break;
             case PgnToken.LEFT_BRACKET:  sb.append('[');   col0 = false; break;

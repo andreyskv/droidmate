@@ -18,11 +18,15 @@
 
 package org.petero.droidfish.gamelogic;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -67,7 +71,9 @@ public class DroidChessController {
 
     private int searchId;
     private byte[] rememberGame;
-
+    
+    Map<String, String> openingsMap; // = new HashMap<String, String>();
+    String currentOpening;    
     /** Constructor. */
     public DroidChessController(GUIInterface gui, PgnToken.PgnTokenReceiver gameTextListener, PGNOptions options) {
         this.gui = gui;
@@ -75,7 +81,8 @@ public class DroidChessController {
         gameMode = new GameMode(GameMode.TWO_PLAYERS);
         pgnOptions = options;
         listener = new SearchListener();
-        searchId = 0;
+        searchId = 0;        
+        openingsMap = Util.LoadOpeningsMap(this);
     }
 
     /** Start a new game. */
@@ -1085,8 +1092,17 @@ public class DroidChessController {
     private final void updateMoveList() {
         if (game == null)
             return;
+        String gameString = null;
+        
+        
         if (!gameTextListener.isUpToDate()) {
+            
+            PGNOptions minimalOptions = new PGNOptions();
+            minimalOptions.exp.excludeheaders = true;                   
+            gameString =  game.tree.toPGN(minimalOptions);                        
+                     
             PGNOptions tmpOptions = new PGNOptions();
+            tmpOptions.view.headers       = pgnOptions.view.headers;
             tmpOptions.exp.variations     = pgnOptions.view.variations;
             tmpOptions.exp.comments       = pgnOptions.view.comments;
             tmpOptions.exp.nag            = pgnOptions.view.nag;
@@ -1095,12 +1111,16 @@ public class DroidChessController {
             tmpOptions.exp.moveNrAfterNag = false;
             tmpOptions.exp.pieceType      = pgnOptions.view.pieceType;
             gameTextListener.clear();
-            game.tree.pgnTreeWalker(tmpOptions, gameTextListener);
+            
+            String opening =  openingsMap.get(gameString.replaceAll("\n", ""));
+            if(opening != null)
+                currentOpening = opening;
+            game.tree.pgnTreeWalker(tmpOptions, gameTextListener, currentOpening);                                            
         }
         gameTextListener.setCurrent(game.tree.currentNode);
         gui.moveListUpdated();
     }
-
+    
     /** Mark last played move in the GUI. */
     private final void setSelection() {
         Move m = game.getLastMove();

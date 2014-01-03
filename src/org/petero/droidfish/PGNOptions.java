@@ -41,6 +41,7 @@ public class PGNOptions {
         public boolean nag;
     }
     public static class Export {
+        public boolean excludeheaders;
         public boolean variations;
         public boolean comments;
         public boolean nag;
