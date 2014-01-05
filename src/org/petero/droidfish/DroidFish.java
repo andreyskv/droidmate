@@ -915,7 +915,7 @@ public class DroidFish extends Activity implements GUIInterface {
         autoSwapSides = settings.getBoolean("autoSwapSides", false);
         playerNameFlip = settings.getBoolean("playerNameFlip", true);
         setBoardFlip(!playerName.equals(oldPlayerName));
-        boolean drawSquareLabels = settings.getBoolean("drawSquareLabels", false);
+        boolean drawSquareLabels = settings.getBoolean("drawSquareLabels", true);
         cb.setDrawSquareLabels(drawSquareLabels);
         cb.oneTouchMoves = settings.getBoolean("oneTouchMoves", false);
         cb.toggleSelection = getIntSetting("squareSelectType", 0) == 1;
@@ -2343,10 +2343,10 @@ public class DroidFish extends Activity implements GUIInterface {
                 switch (item) {
 //                case 0: gameModeType = GameMode.ANALYSIS;      break;
 //                case 1: gameModeType = GameMode.EDIT_GAME;     break;
-                case 2: gameModeType = GameMode.PLAYER_WHITE; flipSite = true; break;
-                case 3: gameModeType = GameMode.PLAYER_BLACK; flipSite = true; break;
-                case 4: gameModeType = GameMode.TWO_PLAYERS;   break;
-                case 5: gameModeType = GameMode.TWO_COMPUTERS; break;
+                case 0: gameModeType = GameMode.PLAYER_WHITE; flipSite = true; break;
+                case 1: gameModeType = GameMode.PLAYER_BLACK; flipSite = true; break;
+                case 2: gameModeType = GameMode.TWO_PLAYERS;   break;
+                case 3: gameModeType = GameMode.TWO_COMPUTERS; break;
                 default: break;
                 }
                 dialog.dismiss();

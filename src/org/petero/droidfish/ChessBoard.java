@@ -405,7 +405,7 @@ public abstract class ChessBoard extends View {
         sqSize = Math.min(getSqSizeW(width), getSqSizeH(height));
         blackPiecePaint.setTextSize(sqSize);
         whitePiecePaint.setTextSize(sqSize);
-        labelPaint.setTextSize(sqSize/4.0f);
+        labelPaint.setTextSize(sqSize/5.0f);
         decorationPaint.setTextSize(sqSize/3.0f);
         computeOrigin(width, height);
         for (int x = 0; x < 8; x++) {
@@ -425,7 +425,7 @@ public abstract class ChessBoard extends View {
                         drawLabel(canvas, xCrd, yCrd, false, false, "12345678".charAt(y));
                     }
                     if (y == (flipped ? 7 : 0)) {
-                        drawLabel(canvas, xCrd, yCrd, true, true, "abcdefgh".charAt(x));
+                        drawLabel(canvas, xCrd, yCrd, false, true, "abcdefgh".charAt(x));
                     }
                 }
             }
@@ -560,7 +560,7 @@ public abstract class ChessBoard extends View {
             labelBounds = new Rect();
             labelPaint.getTextBounds("f", 0, 1, labelBounds);
         }
-        int margin = sqSize / 16;
+        int margin = sqSize / 20;
         if (right) {
                 xCrd += sqSize - labelBounds.right - margin;
             } else {
