@@ -141,8 +141,8 @@ public class DroidChessController {
             if (newMode.humansTurn(game.currPos().whiteMove))
                 searchId++;
             gameMode = newMode;
-            if (!gameMode.playerWhite() || !gameMode.playerBlack())
-                setPlayerNames(game); // If computer player involved, set player names
+       //     if (!gameMode.playerWhite() || !gameMode.playerBlack())
+            setPlayerNames(game); // If computer player involved, set player names
             updateGameMode();
             abortSearch();
             updateComputeThreads();

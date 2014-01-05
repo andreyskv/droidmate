@@ -1074,7 +1074,7 @@ public class DroidFish extends Activity implements GUIInterface {
     //        }
         }
         SVG svg = SVGParser.getSVGFromResource(getResources(), R.raw.touch);
-        setButtonData(custom1Button, bWidth, bHeight, custom1ButtonActions.getIcon(), svg, true);
+        setButtonData(custom1Button, bWidth, bHeight, custom1ButtonActions.getIcon(), svg, false);
         setButtonData(custom2Button, bWidth, bHeight, custom2ButtonActions.getIcon(), svg, true);
         setButtonData(custom3Button, bWidth, bHeight, custom3ButtonActions.getIcon(), svg, true);
         setButtonData(modeButton, bWidth, bHeight, R.raw.mode, svg, false);
@@ -1118,21 +1118,18 @@ public class DroidFish extends Activity implements GUIInterface {
     }
 
     private final void setEngineTitle(String engine, int strength) {
-        if (engine.contains("/")) {
-            int idx = engine.lastIndexOf('/');
-            String eName = engine.substring(idx + 1);
-            engineTitleText.setText(eName);
-        } else {
-            String eName = getString(engine.equals("cuckoochess") ?
-                                     R.string.cuckoochess_engine :
-                                     R.string.stockfish_engine);
-            boolean analysis = (ctrl != null) && ctrl.analysisMode();
-            if ((strength < 1000) && !analysis) {
-                engineTitleText.setText(String.format(Locale.US, "%s: %d%%", eName, strength / 10));
-            } else {
-                engineTitleText.setText(eName);
-            }
+
+        //This is not engine title text anymore. This is just mode display.
+        if (ctrl.analysisMode()){
+             engineTitleText.setText(getString(R.string.analysis_mode));
         }
+        else if(ctrl.editMode()){
+             engineTitleText.setText(getString(R.string.edit_replay_game));              
+        }
+        else{
+             engineTitleText.setText("");              
+        }
+            
     }
 
     /** Update center field in second header line. */
@@ -1152,6 +1149,7 @@ public class DroidFish extends Activity implements GUIInterface {
             sb.append(tmpInfo[2] / 1000);
         }
         summaryTitleText.setText(sb.toString());
+                
     }
 
     @Override
@@ -2328,8 +2326,8 @@ public class DroidFish extends Activity implements GUIInterface {
 
     private final Dialog gameModeDialog() {
         final CharSequence[] items = {
-            getString(R.string.analysis_mode),
-            getString(R.string.edit_replay_game),
+//            getString(R.string.analysis_mode),
+//            getString(R.string.edit_replay_game),
             getString(R.string.play_white),
             getString(R.string.play_black),
             getString(R.string.two_players),
@@ -2343,8 +2341,8 @@ public class DroidFish extends Activity implements GUIInterface {
                 /* only flip site in case the player was specified resp. changed */
                 boolean flipSite = false;
                 switch (item) {
-                case 0: gameModeType = GameMode.ANALYSIS;      break;
-                case 1: gameModeType = GameMode.EDIT_GAME;     break;
+//                case 0: gameModeType = GameMode.ANALYSIS;      break;
+//                case 1: gameModeType = GameMode.EDIT_GAME;     break;
                 case 2: gameModeType = GameMode.PLAYER_WHITE; flipSite = true; break;
                 case 3: gameModeType = GameMode.PLAYER_BLACK; flipSite = true; break;
                 case 4: gameModeType = GameMode.TWO_PLAYERS;   break;
@@ -3278,15 +3276,27 @@ public class DroidFish extends Activity implements GUIInterface {
 
     @Override
     public void setRemainingTime(int wTime, int bTime, int nextUpdate) {
-        if (ctrl.getGameMode().clocksActive()) {
-            whiteTitleText.setText(getString(R.string.white_square_character) + " " + timeToString(wTime));
-            blackTitleText.setText(getString(R.string.black_square_character) + " " + timeToString(bTime));
-        } else {
-            TreeMap<String,String> headers = new TreeMap<String,String>();
-            ctrl.getHeaders(headers);
-            whiteTitleText.setText(headers.get("White"));
-            blackTitleText.setText(headers.get("Black"));
-        }
+
+        String whiteHeader = "";
+        String blackHeader = "";
+        String whiteClock = "";
+        String blackClock = "";
+        
+        if (ctrl.getGameMode().clocksActive()) {                       
+             TreeMap<String,String> headers = new TreeMap<String,String>();
+             ctrl.getHeaders(headers);
+
+             whiteHeader = headers.get("White");
+             blackHeader = headers.get("Black");
+             whiteClock = getString(R.string.white_square_character) + " " + timeToString(wTime);
+             blackClock = getString(R.string.black_square_character) + " " + timeToString(bTime);
+         }
+        else{
+
+        }       
+        whiteTitleText.setText(whiteClock + " " + whiteHeader);
+        blackTitleText.setText(blackClock + " " + blackHeader);
+
         handlerTimer.removeCallbacks(r);
         if (nextUpdate > 0)
             handlerTimer.postDelayed(r, nextUpdate);
