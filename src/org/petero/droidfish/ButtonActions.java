@@ -63,11 +63,11 @@ public class ButtonActions {
         this.button = button;
         button.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View v) { 
-                v.setSelected(!v.isSelected());
+            public void onClick(View v) {                 
                 if (mainAction != null) {
                     if (mainAction.enabled())
                         mainAction.run();
+                    v.setSelected(mainAction.toggleState());
                 } else { 
                    showMenu(activity);
                 }                
@@ -126,8 +126,11 @@ public class ButtonActions {
                 visible = true;
             menuActions.add(a);
         }
-        if (button != null)
+        if (button != null){
             button.setVisibility(visible ? View.VISIBLE : View.GONE);
+            if (mainAction != null)
+                button.setSelected(mainAction.toggleState());
+        }
     }
 
     /** Get icon resource for button. */

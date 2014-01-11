@@ -246,6 +246,7 @@ public class DroidFish extends Activity implements GUIInterface {
                     setBooleanPref("boardFlipped", boardFlipped);
                     cb.setFlipped(boardFlipped);
                 }
+                 public boolean toggleState(){return false;}
             });
             addAction(new UIAction() {
                 public String getId() { return "showThinking"; }
@@ -256,6 +257,7 @@ public class DroidFish extends Activity implements GUIInterface {
                     mShowThinking = toggleBooleanPref("showThinking");
                     updateThinkingInfo();
                 }
+                 public boolean toggleState(){return false;}
             });
             addAction(new UIAction() {
                 public String getId() { return "bookHints"; }
@@ -266,6 +268,7 @@ public class DroidFish extends Activity implements GUIInterface {
                     mShowBookHints = toggleBooleanPref("bookHints");
                     updateThinkingInfo();
                 }
+                 public boolean toggleState(){return false;}
             });
             addAction(new UIAction() {
                 public String getId() { return "viewVariations"; }
@@ -277,6 +280,7 @@ public class DroidFish extends Activity implements GUIInterface {
                     gameTextListener.clear();
                     ctrl.prefsChanged(false);
                 }
+                 public boolean toggleState(){return false;}
             });
             addAction(new UIAction() {
                 public String getId() { return "viewComments"; }
@@ -288,6 +292,7 @@ public class DroidFish extends Activity implements GUIInterface {
                     gameTextListener.clear();
                     ctrl.prefsChanged(false);
                 }
+                 public boolean toggleState(){return false;}
             });
             addAction(new UIAction() {
                 public String getId() { return "viewHeaders"; }
@@ -299,6 +304,7 @@ public class DroidFish extends Activity implements GUIInterface {
                     gameTextListener.clear();
                     ctrl.prefsChanged(false);
                 }
+                 public boolean toggleState(){return false;}
             });
             addAction(new UIAction() {
                 public String getId() { return "toggleAnalysis"; }
@@ -307,16 +313,24 @@ public class DroidFish extends Activity implements GUIInterface {
                 public boolean enabled() { return true; }
                 //private int oldGameModeType = GameMode.EDIT_GAME;
                 public void run() {
-                    int gameModeType;
-                    if (ctrl.analysisMode()) {
-                        gameModeType = GameMode.TWO_PLAYERS; // oldGameModeType;
-                    } else {
-                  //      oldGameModeType = ctrl.getGameMode().getModeNr();
-                        gameModeType = GameMode.ANALYSIS;
-                    }
-                    newGameMode(gameModeType);
-                    setBoardFlip(true);
+//                    int gameModeType;
+//                    if (ctrl.analysisMode()) {
+//                        gameModeType = GameMode.TWO_PLAYERS; // oldGameModeType;
+//                    } else {
+//                  //      oldGameModeType = ctrl.getGameMode().getModeNr();
+//                        gameModeType = GameMode.ANALYSIS;
+//                    }
+//                    newGameMode(gameModeType);
+//                    mShowThinking = !mShowThinking;
+                    
+                    mShowThinking = toggleBooleanPref("showThinking");
+                    ctrl.updateComputeThreads();
+                    updateThinkingInfo();
+                            
+                   // setBoardFlip(true);
                 }
+                
+                public boolean toggleState(){return mShowThinking;}
             });
             addAction(new UIAction() {
                 public String getId() { return "toggleUserAnalysis"; }
@@ -335,6 +349,9 @@ public class DroidFish extends Activity implements GUIInterface {
                     newGameMode(gameModeType);
                     setBoardFlip(true);
                 }
+                 public boolean toggleState(){
+                     return ctrl.editMode();
+                 }
             });
             
             
@@ -347,6 +364,7 @@ public class DroidFish extends Activity implements GUIInterface {
                     pgnOptions.view.headers = toggleBooleanPref("largeButtons");
                     updateButtons();
                 }
+                 public boolean toggleState(){return false;}
             });
             addAction(new UIAction() {
                 public String getId() { return "blindMode"; }
@@ -358,6 +376,7 @@ public class DroidFish extends Activity implements GUIInterface {
                     setBooleanPref("blindMode", blindMode);
                     cb.setBlindMode(blindMode);
                 }
+                public boolean toggleState(){return false;}
             });
             addAction(new UIAction() {
                 public String getId() { return "loadLastFile"; }
@@ -367,6 +386,7 @@ public class DroidFish extends Activity implements GUIInterface {
                 public void run() {
                     loadLastFile();
                 }
+                 public boolean toggleState(){return false;}
             });
             addAction(new UIAction() {
                 public String getId() { return "selectEngine"; }
@@ -377,6 +397,7 @@ public class DroidFish extends Activity implements GUIInterface {
                     removeDialog(SELECT_ENGINE_DIALOG_NOMANAGE);
                     showDialog(SELECT_ENGINE_DIALOG_NOMANAGE);
                 }
+                 public boolean toggleState(){return false;}
             });
         }
 
@@ -713,9 +734,9 @@ public class DroidFish extends Activity implements GUIInterface {
                         if (nUndo + nRedo > 0)
                             scrollY = 0;
                         if (nRedo + nUndo > 1) {
-                            boolean analysis = gameMode.analysisMode();
+                          //  boolean analysis = gameMode.analysisMode();
                             boolean human = gameMode.playerWhite() || gameMode.playerBlack();
-                            if (analysis || !human)
+                            if (!human)
                                 ctrl.setGameMode(new GameMode(GameMode.TWO_PLAYERS));
                         }
                         for (int i = 0; i < nRedo; i++) ctrl.redoMove();
@@ -798,7 +819,8 @@ public class DroidFish extends Activity implements GUIInterface {
         });
         thinking.setOnLongClickListener(new OnLongClickListener() {
             public boolean onLongClick(View v) {
-                if (mShowThinking || gameMode.analysisMode()) {
+                //if (mShowThinking || gameMode.analysisMode()) {
+                if (mShowThinking) {
                     if (!pvMoves.isEmpty()) {
                         removeDialog(THINKING_MENU_DIALOG);
                         showDialog(THINKING_MENU_DIALOG);
@@ -1120,10 +1142,11 @@ public class DroidFish extends Activity implements GUIInterface {
     private final void setEngineTitle(String engine, int strength) {
 
         //This is not engine title text anymore. This is just mode display.
-        if (ctrl.analysisMode()){
-             engineTitleText.setText(getString(R.string.analysis_mode));
-        }
-        else if(ctrl.editMode()){
+//        if (ctrl.analysisMode()){
+//             engineTitleText.setText(getString(R.string.analysis_mode));
+//        }
+//        else 
+        if(ctrl.editMode()){
              engineTitleText.setText(getString(R.string.edit_replay_game));              
         }
         else{
@@ -1330,8 +1353,8 @@ public class DroidFish extends Activity implements GUIInterface {
                 try {
                     String pgn = data.getAction();
                     int modeNr = ctrl.getGameMode().getModeNr();
-                    if ((modeNr != GameMode.ANALYSIS) && (modeNr != GameMode.EDIT_GAME))
-                        newGameMode(GameMode.EDIT_GAME);
+        //            if ((modeNr != GameMode.ANALYSIS) && (modeNr != GameMode.EDIT_GAME))
+          //              newGameMode(GameMode.EDIT_GAME);
                     ctrl.setFENOrPGN(pgn);
                     setBoardFlip(true);
                 } catch (ChessParseError e) {
@@ -1473,9 +1496,10 @@ public class DroidFish extends Activity implements GUIInterface {
             }
         }
         if (autoSwapSides) {
-            if (gameMode.analysisMode()) {
-                flipped = !cb.pos.whiteMove;
-            } else if (gameMode.playerWhite() && gameMode.playerBlack()) {
+//            if (gameMode.analysisMode()) {
+//                flipped = !cb.pos.whiteMove;
+//            } else
+            if (gameMode.playerWhite() && gameMode.playerBlack()) {
                 flipped = !cb.pos.whiteMove;
             } else if (gameMode.playerWhite()) {
                 flipped = false;
@@ -1579,6 +1603,11 @@ public class DroidFish extends Activity implements GUIInterface {
     public int engineThreads() {
         return mEngineThreads;
     }
+    
+    @Override
+    public boolean showThinking(){
+        return mShowThinking;
+    }
 
     @Override
     public Context getContext() {
@@ -1634,14 +1663,15 @@ public class DroidFish extends Activity implements GUIInterface {
         } else {
             lastComputationMillis = 0;
         }
-        updateNotification();
+        updateNotification();        
     }
 
     private final void updateThinkingInfo() {
         boolean thinkingEmpty = true;
         {
             String s = "";
-            if (mShowThinking || gameMode.analysisMode()) {
+            //if (mShowThinking || gameMode.analysisMode()) {
+            if (mShowThinking) {
                 s = thinkingStr1;
                 if (s.length() > 0) thinkingEmpty = false;
                 if (mShowStats) {
@@ -1672,7 +1702,8 @@ public class DroidFish extends Activity implements GUIInterface {
         thinking.setVisibility(thinkingEmpty ? View.GONE : View.VISIBLE);
 
         List<Move> hints = null;
-        if (mShowThinking || gameMode.analysisMode()) {
+        //if (mShowThinking || gameMode.analysisMode()) {
+        if (mShowThinking) {            
             ArrayList<ArrayList<Move>> pvMovesTmp = pvMoves;
             if (pvMovesTmp.size() == 1) {
                 hints = pvMovesTmp.get(0);
@@ -2386,7 +2417,7 @@ public class DroidFish extends Activity implements GUIInterface {
         }
 
         boolean allowNullMove =
-            gameMode.analysisMode() ||
+     //       gameMode.analysisMode() ||
             (gameMode.playerWhite() && gameMode.playerBlack() && !gameMode.clocksActive());
         if (allowNullMove) {
             lst.add(getString(R.string.add_null_move)); actions.add(ADD_NULL_MOVE);
@@ -2510,15 +2541,15 @@ public class DroidFish extends Activity implements GUIInterface {
         List<Integer> actions = new ArrayList<Integer>();
         lst.add(getString(R.string.add_analysis)); actions.add(ADD_ANALYSIS);
         final int numPV = ctrl.getNumPV();
-        if (gameMode.analysisMode()) {
-            int maxPV = ctrl.maxPV();
-            if (numPV > 1) {
-                lst.add(getString(R.string.fewer_variations)); actions.add(MULTIPV_DEC);
-            }
-            if (numPV < maxPV) {
-                lst.add(getString(R.string.more_variations)); actions.add(MULTIPV_INC);
-            }
-        }
+//        if (gameMode.analysisMode()) {
+//            int maxPV = ctrl.maxPV();
+//            if (numPV > 1) {
+//                lst.add(getString(R.string.fewer_variations)); actions.add(MULTIPV_DEC);
+//            }
+//            if (numPV < maxPV) {
+//                lst.add(getString(R.string.more_variations)); actions.add(MULTIPV_INC);
+//            }
+//        }
         if (thinkingStr1.length() > 0) {
             if (mShowStats) {
                 lst.add(getString(R.string.hide_statistics)); actions.add(HIDE_STATISTICS);

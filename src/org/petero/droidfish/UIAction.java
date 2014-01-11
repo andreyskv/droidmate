@@ -31,4 +31,8 @@ public interface UIAction extends Runnable {
 
     /** Return true if the action is currently enabled. */
     public boolean enabled();
+    
+    /** Return true if we want to change toggle button selection after click. */
+    public boolean toggleState();
 }
+

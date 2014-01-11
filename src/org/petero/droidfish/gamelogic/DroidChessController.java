@@ -18,15 +18,11 @@
 
 package org.petero.droidfish.gamelogic;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -100,6 +96,7 @@ public class DroidChessController {
         searchId++;
         game = new Game(gameTextListener, tcData);
         computerPlayer.clearTT();
+        rememberGame = null;
         setPlayerNames(game);
         updateGameMode();
     }
@@ -156,9 +153,9 @@ public class DroidChessController {
     }
 
     /** Return true if game mode is analysis. */
-    public final boolean analysisMode() {
-        return gameMode.analysisMode();
-    }
+//    public final boolean analysisMode() {
+//        return gameMode.analysisMode();
+//    }
     
         /** Return true if game mode is analysis. */
     public final boolean editMode() {
@@ -316,7 +313,8 @@ public class DroidChessController {
         if (humansTurn()) {
             Position oldPos = new Position(game.currPos());
             if (doMove(m)) {
-                if (m.equals(ponderMove) && !gameMode.analysisMode() &&
+                //if (m.equals(ponderMove) && !gameMode.analysisMode() &&
+                if (m.equals(ponderMove) &&
                     (computerPlayer.getSearchType() == SearchType.PONDER)) {
                     computerPlayer.ponderHit(searchId);
                     ponderMove = null;
@@ -887,9 +885,10 @@ public class DroidChessController {
     }
 
     /** Start/stop computer thinking/analysis as appropriate. */
-    private final void updateComputeThreads() {
+    public final void updateComputeThreads() {
         boolean alive = game.tree.getGameState() == GameState.ALIVE;
-        boolean analysis = gameMode.analysisMode() && alive;
+        //boolean analysis = gameMode.analysisMode() && alive;        
+        boolean analysis = gui.showThinking() && alive;
         boolean computersTurn = !humansTurn() && alive;
         boolean ponder = gui.ponderMode() && !analysis && !computersTurn && (ponderMove != null) && alive;
         if (!analysis && !(computersTurn || ponder))
@@ -897,15 +896,7 @@ public class DroidChessController {
         listener.clearSearchInfo(searchId);
         updateBookHints();
         if (!computerPlayer.sameSearchId(searchId)) {
-            if (analysis) {
-                Pair<Position, ArrayList<Move>> ph = game.getUCIHistory();
-                SearchRequest sr = DroidComputerPlayer.SearchRequest.analyzeRequest(
-                        searchId, ph.first, ph.second,
-                        new Position(game.currPos()),
-                        game.haveDrawOffer(), engine,
-                        gui.engineThreads(), numPV);
-                computerPlayer.queueAnalyzeRequest(sr);
-            } else if (computersTurn || ponder) {
+            if (computersTurn || ponder) {
                 listener.clearSearchInfo(searchId);
                 listener.notifyBookInfo(searchId, "", null);
                 final Pair<Position, ArrayList<Move>> ph = game.getUCIHistory();
@@ -926,6 +917,14 @@ public class DroidChessController {
                         engine, gui.engineThreads(),
                         strength);
                 computerPlayer.queueSearchRequest(sr);
+            }else if (analysis) {
+                Pair<Position, ArrayList<Move>> ph = game.getUCIHistory();
+                SearchRequest sr = DroidComputerPlayer.SearchRequest.analyzeRequest(
+                        searchId, ph.first, ph.second,
+                        new Position(game.currPos()),
+                        game.haveDrawOffer(), engine,
+                        gui.engineThreads(), numPV);
+                computerPlayer.queueAnalyzeRequest(sr);
             } else {
                 computerPlayer.queueStartEngine(searchId, engine);
             }

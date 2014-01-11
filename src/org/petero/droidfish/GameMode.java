@@ -24,7 +24,7 @@ public class GameMode {
     public static final int PLAYER_WHITE  = 1;
     public static final int PLAYER_BLACK  = 2;
     public static final int TWO_PLAYERS   = 3;
-    public static final int ANALYSIS      = 4;
+ //   public static final int ANALYSIS      = 4;
     public static final int TWO_COMPUTERS = 5;
     public static final int EDIT_GAME     = 6;
 
@@ -41,7 +41,7 @@ public class GameMode {
         switch (modeNr) {
         case PLAYER_WHITE:
         case TWO_PLAYERS:
-        case ANALYSIS:
+    //    case ANALYSIS:
         case EDIT_GAME:
             return true;
         default:
@@ -54,7 +54,7 @@ public class GameMode {
         switch (modeNr) {
         case PLAYER_BLACK:
         case TWO_PLAYERS:
-        case ANALYSIS:
+      //  case ANALYSIS:
         case EDIT_GAME:
             return true;
         default:
@@ -62,9 +62,9 @@ public class GameMode {
         }
     }
 
-    public final boolean analysisMode() {
-        return modeNr == ANALYSIS;
-    }
+//    public final boolean analysisMode() {
+//        return modeNr == ANALYSIS;
+//    }
     
     public final boolean editMode() {
         return modeNr == EDIT_GAME;
