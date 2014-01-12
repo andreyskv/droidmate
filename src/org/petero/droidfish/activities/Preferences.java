@@ -25,6 +25,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.preference.Preference;
+import android.preference.PreferenceScreen;
 
 public class Preferences extends PreferenceActivity {
 
@@ -34,6 +36,15 @@ public class Preferences extends PreferenceActivity {
         addPreferencesFromResource(R.xml.preferences);
 
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+
+        //Hide custom buttons 2 and 3 with this megahack
+        PreferenceScreen buttons =  (PreferenceScreen)findPreference("buttonSettings"); 
+        Preference b2 = findPreference("button2"); 
+        Preference b3 = findPreference("button3");         
+        buttons.removePreference(b2);
+        buttons.removePreference(b3);
+        
         Util.setFullScreenMode(this, settings);
     }
 }
+

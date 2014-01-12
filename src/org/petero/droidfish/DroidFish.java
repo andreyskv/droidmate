@@ -418,7 +418,7 @@ public class DroidFish extends Activity implements GUIInterface {
 
         createDirectories();
 
-        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);        
         settings = PreferenceManager.getDefaultSharedPreferences(this);
         settings.registerOnSharedPreferenceChangeListener(new OnSharedPreferenceChangeListener() {
             @Override
@@ -834,6 +834,7 @@ public class DroidFish extends Activity implements GUIInterface {
         custom1ButtonActions.setImageButton(custom1Button, this);
         custom2Button = (ImageButton)findViewById(R.id.custom2Button);
         custom2ButtonActions.setImageButton(custom2Button, this);
+        
         custom3Button = (ImageButton)findViewById(R.id.custom3Button);
         custom3ButtonActions.setImageButton(custom3Button, this);
 

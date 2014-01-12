@@ -293,14 +293,12 @@
                 </net.margaritov.preference.colorpicker.ColorPickerPreference>
             </PreferenceCategory>
         </PreferenceScreen>
-    </PreferenceCategory>
-    <PreferenceCategory
-        android:title="@string/prefs_user_interface_behavior">
-        <PreferenceScreen 
+            <PreferenceScreen 
             android:key="buttonSettings" 
             android:title="@string/prefs_buttonSettings_title" 
             android:summary="@string/prefs_buttonSettings_summary">
             <PreferenceCategory
+                android:key="button1"
                 android:title="@string/prefs_custom_button_1">
                 <ListPreference
                     android:key="button_action_custom1_0" 
@@ -314,35 +312,35 @@
                     android:title="@string/prefs_button_action_1_title" 
                     android:entryValues="@array/button_action_values" 
                     android:entries="@array/button_action_texts" 
-                    android:defaultValue="viewHeaders">
+                    android:defaultValue="bookHints">
                 </ListPreference>
                 <ListPreference 
                     android:key="button_action_custom1_2" 
                     android:title="@string/prefs_button_action_2_title" 
                     android:entryValues="@array/button_action_values" 
                     android:entries="@array/button_action_texts" 
-                    android:defaultValue="viewComments">
+                    android:defaultValue="viewVariations">
                 </ListPreference>
                 <ListPreference
                     android:key="button_action_custom1_3" 
                     android:title="@string/prefs_button_action_3_title" 
                     android:entryValues="@array/button_action_values" 
                     android:entries="@array/button_action_texts" 
-                    android:defaultValue="blindMode">
+                    android:defaultValue="viewComments">
                 </ListPreference>
                 <ListPreference
                     android:key="button_action_custom1_4" 
                     android:title="@string/prefs_button_action_4_title" 
                     android:entryValues="@array/button_action_values" 
                     android:entries="@array/button_action_texts" 
-                    android:defaultValue="">
+                    android:defaultValue="viewHeaders">
                 </ListPreference>
                 <ListPreference
                     android:key="button_action_custom1_5" 
                     android:title="@string/prefs_button_action_5_title" 
                     android:entryValues="@array/button_action_values" 
                     android:entries="@array/button_action_texts" 
-                    android:defaultValue="">
+                    android:defaultValue="blindMode">
                 </ListPreference>
                 <ListPreference
                     android:key="button_action_custom1_6" 
@@ -352,12 +350,14 @@
                     android:defaultValue="">
                 </ListPreference>
             </PreferenceCategory>
-            <PreferenceCategory
-                android:title="@string/prefs_custom_button_2">
+              <PreferenceCategory
+                android:title="@string/prefs_custom_button_2"
+                android:key="button2"
+              >
                 <ListPreference
                     android:key="button_action_custom2_0" 
                     android:title="@string/prefs_button_action_0_title" 
-                    android:entryValues="@array/button_action_values" 
+                    android:entryValues="@array/button_action_values"                    
                     android:entries="@array/button_action_texts" 
                     android:defaultValue="toggleAnalysis">
                 </ListPreference>
@@ -366,21 +366,21 @@
                     android:title="@string/prefs_button_action_1_title" 
                     android:entryValues="@array/button_action_values" 
                     android:entries="@array/button_action_texts" 
-                    android:defaultValue="">
+                    android:defaultValue="selectEngine">
                 </ListPreference>
                 <ListPreference
                     android:key="button_action_custom2_2" 
                     android:title="@string/prefs_button_action_2_title" 
                     android:entryValues="@array/button_action_values" 
                     android:entries="@array/button_action_texts" 
-                    android:defaultValue="bookHints">
+                    android:defaultValue="">
                 </ListPreference>
                 <ListPreference
                     android:key="button_action_custom2_3" 
                     android:title="@string/prefs_button_action_3_title" 
                     android:entryValues="@array/button_action_values" 
                     android:entries="@array/button_action_texts" 
-                    android:defaultValue="selectEngine">
+                    android:defaultValue="">
                 </ListPreference>
                 <ListPreference
                     android:key="button_action_custom2_4" 
@@ -404,8 +404,10 @@
                     android:defaultValue="">
                 </ListPreference>
             </PreferenceCategory>
-            <PreferenceCategory
-                android:title="@string/prefs_custom_button_3">
+          <PreferenceCategory
+                android:title="@string/prefs_custom_button_3"
+                android:key="button3"
+          >
                 <ListPreference
                     android:key="button_action_custom3_0" 
                     android:title="@string/prefs_button_action_0_title" 
@@ -461,9 +463,13 @@
             android:key="discardVariations"
             android:title="@string/prefs_discardVariations_title"
             android:summary="@string/prefs_discardVariations_summary"
-            android:defaultValue="false">
+            android:defaultValue="true">
         </CheckBoxPreference>
-        </PreferenceCategory>
+    </PreferenceCategory>
+<!--    <PreferenceCategory
+        android:title="@string/prefs_user_interface_behavior">
+    
+        </PreferenceCategory>-->
     <PreferenceCategory
         android:title="@string/prefs_other">
         <PreferenceScreen
