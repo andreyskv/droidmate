@@ -26,11 +26,11 @@
         android:title="@string/option_settings"
         android:icon="@android:drawable/ic_menu_preferences">
     </item>
-    <item
+<!--    <item
         android:id="@+id/item_goto_move"
         android:title="@string/option_goto_move"
         android:icon="@android:drawable/ic_menu_mylocation">
-    </item>
+    </item>-->
     <item
         android:id="@+id/item_force_move"
         android:title="@string/option_force_computer_move">

@@ -1282,10 +1282,10 @@ public class DroidFish extends Activity implements GUIInterface {
             showDialog(dialog);
             return true;
         }
-        case R.id.item_goto_move: {
-            showDialog(SELECT_MOVE_DIALOG);
-            return true;
-        }
+//        case R.id.item_goto_move: {
+//            showDialog(SELECT_MOVE_DIALOG);
+//            return true;
+//        }
         case R.id.item_force_move: {
             ctrl.stopSearch();
             return true;
@@ -2610,20 +2610,24 @@ public class DroidFish extends Activity implements GUIInterface {
         final int GOTO_START_GAME = 0;
         final int GOTO_START_VAR  = 1;
         final int GOTO_PREV_VAR   = 2;
-        final int LOAD_PREV_GAME  = 3;
+        final int GOTO_MOVE  = 3;
 
         List<CharSequence> lst = new ArrayList<CharSequence>();
         List<Integer> actions = new ArrayList<Integer>();
+        
         lst.add(getString(R.string.goto_start_game));      actions.add(GOTO_START_GAME);
         lst.add(getString(R.string.goto_start_variation)); actions.add(GOTO_START_VAR);
         if (ctrl.currVariation() > 0) {
             lst.add(getString(R.string.goto_prev_variation)); actions.add(GOTO_PREV_VAR);
         }
-        final int currFT = currFileType();
-        final String currPathName = currPathName();
-        if ((currFT != FT_NONE) && !gameMode.clocksActive()) {
-            lst.add(getString(R.string.load_prev_game)); actions.add(LOAD_PREV_GAME);
-        }
+        lst.add(getString(R.string.goto_move)); actions.add(GOTO_MOVE);
+        
+          
+//        final int currFT = currFileType();
+//        final String currPathName = currPathName();
+//        if ((currFT != FT_NONE) && !gameMode.clocksActive()) {
+//            lst.add(getString(R.string.load_prev_game)); actions.add(LOAD_PREV_GAME);
+//        }
         final List<Integer> finalActions = actions;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.go_back);
@@ -2633,25 +2637,32 @@ public class DroidFish extends Activity implements GUIInterface {
                 case GOTO_START_GAME: ctrl.gotoMove(0); break;
                 case GOTO_START_VAR:  ctrl.gotoStartOfVariation(); break;
                 case GOTO_PREV_VAR:   ctrl.changeVariation(-1); break;
-                case LOAD_PREV_GAME:
-                    Intent i;
-                    if (currFT == FT_PGN) {
-                        i = new Intent(DroidFish.this, EditPGNLoad.class);
-                        i.setAction("org.petero.droidfish.loadFilePrevGame");
-                        i.putExtra("org.petero.droidfish.pathname", currPathName);
-                        startActivityForResult(i, RESULT_LOAD_PGN);
-                    } else if (currFT == FT_SCID) {
-                        i = new Intent(DroidFish.this, LoadScid.class);
-                        i.setAction("org.petero.droidfish.loadScidPrevGame");
-                        i.putExtra("org.petero.droidfish.pathname", currPathName);
-                        startActivityForResult(i, RESULT_LOAD_PGN);
-                    } else if (currFT == FT_FEN) {
-                        i = new Intent(DroidFish.this, LoadFEN.class);
-                        i.setAction("org.petero.droidfish.loadPrevFen");
-                        i.putExtra("org.petero.droidfish.pathname", currPathName);
-                        startActivityForResult(i, RESULT_LOAD_FEN);
-                    }
-                    break;
+                case GOTO_MOVE: showDialog(SELECT_MOVE_DIALOG); break;
+                    
+//                            case R.id.item_goto_move: {
+//            showDialog(SELECT_MOVE_DIALOG);
+//            return true;
+//        }
+                            
+//                case LOAD_PREV_GAME:
+//                    Intent i;
+//                    if (currFT == FT_PGN) {
+//                        i = new Intent(DroidFish.this, EditPGNLoad.class);
+//                        i.setAction("org.petero.droidfish.loadFilePrevGame");
+//                        i.putExtra("org.petero.droidfish.pathname", currPathName);
+//                        startActivityForResult(i, RESULT_LOAD_PGN);
+//                    } else if (currFT == FT_SCID) {
+//                        i = new Intent(DroidFish.this, LoadScid.class);
+//                        i.setAction("org.petero.droidfish.loadScidPrevGame");
+//                        i.putExtra("org.petero.droidfish.pathname", currPathName);
+//                        startActivityForResult(i, RESULT_LOAD_PGN);
+//                    } else if (currFT == FT_FEN) {
+//                        i = new Intent(DroidFish.this, LoadFEN.class);
+//                        i.setAction("org.petero.droidfish.loadPrevFen");
+//                        i.putExtra("org.petero.droidfish.pathname", currPathName);
+//                        startActivityForResult(i, RESULT_LOAD_FEN);
+//                    }
+//                    break;
                 }
             }
         });
@@ -2662,19 +2673,20 @@ public class DroidFish extends Activity implements GUIInterface {
     private final Dialog goForwardMenuDialog() {
         final int GOTO_END_VAR   = 0;
         final int GOTO_NEXT_VAR  = 1;
-        final int LOAD_NEXT_GAME = 2;
+        final int GOTO_MOVE  = 2;
 
         List<CharSequence> lst = new ArrayList<CharSequence>();
-        List<Integer> actions = new ArrayList<Integer>();
+        List<Integer> actions = new ArrayList<Integer>();        
         lst.add(getString(R.string.goto_end_variation)); actions.add(GOTO_END_VAR);
         if (ctrl.currVariation() < ctrl.numVariations() - 1) {
             lst.add(getString(R.string.goto_next_variation)); actions.add(GOTO_NEXT_VAR);
         }
-        final int currFT = currFileType();
-        final String currPathName = currPathName();
-        if ((currFT != FT_NONE) && !gameMode.clocksActive()) {
-            lst.add(getString(R.string.load_next_game)); actions.add(LOAD_NEXT_GAME);
-        }
+        lst.add(getString(R.string.goto_move)); actions.add(GOTO_MOVE);
+//        final int currFT = currFileType();
+//        final String currPathName = currPathName();
+//        if ((currFT != FT_NONE) && !gameMode.clocksActive()) {
+//            lst.add(getString(R.string.load_next_game)); actions.add(LOAD_NEXT_GAME);
+//        }
         final List<Integer> finalActions = actions;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.go_forward);
@@ -2683,25 +2695,26 @@ public class DroidFish extends Activity implements GUIInterface {
                 switch (finalActions.get(item)) {
                 case GOTO_END_VAR:  ctrl.gotoMove(Integer.MAX_VALUE); break;
                 case GOTO_NEXT_VAR: ctrl.changeVariation(1); break;
-                case LOAD_NEXT_GAME:
-                    Intent i;
-                    if (currFT == FT_PGN) {
-                        i = new Intent(DroidFish.this, EditPGNLoad.class);
-                        i.setAction("org.petero.droidfish.loadFileNextGame");
-                        i.putExtra("org.petero.droidfish.pathname", currPathName);
-                        startActivityForResult(i, RESULT_LOAD_PGN);
-                    } else if (currFT == FT_SCID) {
-                        i = new Intent(DroidFish.this, LoadScid.class);
-                        i.setAction("org.petero.droidfish.loadScidNextGame");
-                        i.putExtra("org.petero.droidfish.pathname", currPathName);
-                        startActivityForResult(i, RESULT_LOAD_PGN);
-                    } else if (currFT == FT_FEN) {
-                        i = new Intent(DroidFish.this, LoadFEN.class);
-                        i.setAction("org.petero.droidfish.loadNextFen");
-                        i.putExtra("org.petero.droidfish.pathname", currPathName);
-                        startActivityForResult(i, RESULT_LOAD_FEN);
-                    }
-                    break;
+                case GOTO_MOVE: showDialog(SELECT_MOVE_DIALOG); break;
+//                case LOAD_NEXT_GAME:
+//                    Intent i;
+//                    if (currFT == FT_PGN) {
+//                        i = new Intent(DroidFish.this, EditPGNLoad.class);
+//                        i.setAction("org.petero.droidfish.loadFileNextGame");
+//                        i.putExtra("org.petero.droidfish.pathname", currPathName);
+//                        startActivityForResult(i, RESULT_LOAD_PGN);
+//                    } else if (currFT == FT_SCID) {
+//                        i = new Intent(DroidFish.this, LoadScid.class);
+//                        i.setAction("org.petero.droidfish.loadScidNextGame");
+//                        i.putExtra("org.petero.droidfish.pathname", currPathName);
+//                        startActivityForResult(i, RESULT_LOAD_PGN);
+//                    } else if (currFT == FT_FEN) {
+//                        i = new Intent(DroidFish.this, LoadFEN.class);
+//                        i.setAction("org.petero.droidfish.loadNextFen");
+//                        i.putExtra("org.petero.droidfish.pathname", currPathName);
+//                        startActivityForResult(i, RESULT_LOAD_FEN);
+//                    }
+//                    break;
                 }
             }
         });
