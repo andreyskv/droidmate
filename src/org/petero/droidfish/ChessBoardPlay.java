@@ -36,11 +36,11 @@ import android.widget.Toast;
 /** Chess board widget suitable for play mode. */
 public class ChessBoardPlay extends ChessBoard {
     private PGNOptions pgnOptions = null;
-    boolean oneTouchMoves;
+ //   boolean oneTouchMoves;
 
     public ChessBoardPlay(Context context, AttributeSet attrs) {
         super(context, attrs);
-        oneTouchMoves = false;
+   //     oneTouchMoves = false;
     }
 
     public void setPgnOptions(PGNOptions pgnOptions) {
@@ -103,59 +103,59 @@ public class ChessBoardPlay extends ChessBoard {
         if ((selectedSquare != -1) && !userSelectedSquare)
             setSelection(-1); // Remove selection of opponents last moving piece
 
-        if (!oneTouchMoves) {
-            int p = pos.getPiece(sq);
-            if (selectedSquare != -1) {
-                if (sq == selectedSquare) {
-                    if (toggleSelection)
-                        setSelection(-1);
-                    return null;
-                }
-                if (!myColor(p)) {
-                    Move m = new Move(selectedSquare, sq, Piece.EMPTY);
-                    setSelection(highlightLastMove ? sq : -1);
-                    userSelectedSquare = false;
-                    return m;
-                } else
-                    setSelection(sq);
-            } else {
-                if (myColor(p))
-                    setSelection(sq);
-            }
-        } else {
-            int prevSq = userSelectedSquare ? selectedSquare : -1;
-            if (prevSq == sq) {
-                if (toggleSelection)
-                    setSelection(-1);
+       // if (!oneTouchMoves) {
+        int p = pos.getPiece(sq);
+        if (selectedSquare != -1) {
+            if (sq == selectedSquare) {
+              //  if (toggleSelection)
+                //    setSelection(-1);
                 return null;
             }
-            ArrayList<Move> moves = new MoveGen().legalMoves(pos);
-            Move matchingMove = null;
-            if (prevSq >= 0)
-                matchingMove = matchingMove(prevSq, sq, moves).first;
-            boolean anyMatch = false;
-            if  (matchingMove == null) {
-                Pair<Move, Boolean> match = matchingMove(-1, sq, moves);
-                matchingMove = match.first;
-                anyMatch = match.second;
-            }
-            if (matchingMove != null) {
-                setSelection(highlightLastMove ? matchingMove.to : -1);
+            if (!myColor(p)) {
+                Move m = new Move(selectedSquare, sq, Piece.EMPTY);
+                setSelection(highlightLastMove ? sq : -1);
                 userSelectedSquare = false;
-                return matchingMove;
-            }
-            if (!anyMatch && (sq >= 0)) {
-                int p = pos.getPiece(sq);
-                if (myColor(p)) {
-                    String msg = getContext().getString(R.string.piece_can_not_be_moved);
-                    int pieceType = (pgnOptions == null) ? PGNOptions.PT_LOCAL
-                                                         : pgnOptions.view.pieceType;
-                    msg += ": " + TextIO.pieceAndSquareToString(pieceType, p, sq);
-                    Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
-                }
-            }
-            setSelection(anyMatch ? sq : -1);
+                return m;
+            } else
+                setSelection(sq);
+        } else {
+            if (myColor(p))
+                setSelection(sq);
         }
+//        } else {
+//        int prevSq = userSelectedSquare ? selectedSquare : -1;
+//        if (prevSq == sq) {
+//            if (toggleSelection)
+//                setSelection(-1);
+//            return null;
+//        }
+//        ArrayList<Move> moves = new MoveGen().legalMoves(pos);
+//        Move matchingMove = null;
+//        if (prevSq >= 0)
+//            matchingMove = matchingMove(prevSq, sq, moves).first;
+//        boolean anyMatch = false;
+//        if  (matchingMove == null) {
+//            Pair<Move, Boolean> match = matchingMove(-1, sq, moves);
+//            matchingMove = match.first;
+//            anyMatch = match.second;
+//        }
+//        if (matchingMove != null) {
+//            setSelection(highlightLastMove ? matchingMove.to : -1);
+//            userSelectedSquare = false;
+//            return matchingMove;
+//        }
+//        if (!anyMatch && (sq >= 0)) {
+//            int p = pos.getPiece(sq);
+//            if (myColor(p)) {
+//                String msg = getContext().getString(R.string.piece_can_not_be_moved);
+//                int pieceType = (pgnOptions == null) ? PGNOptions.PT_LOCAL
+//                                                     : pgnOptions.view.pieceType;
+//                msg += ": " + TextIO.pieceAndSquareToString(pieceType, p, sq);
+//                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//        setSelection(anyMatch ? sq : -1);
+    //    }
         return null;
     }
 

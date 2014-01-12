@@ -78,9 +78,9 @@ wenn Sie es nicht aktiv nutzen.\
   <string name="colortheme_xboard">XBoard</string>
   <string name="colortheme_blue">Blau</string>
   <string name="colortheme_grey">Grau</string>
-  <string name="colortheme_scid_default">Scid Standard</string>
-  <string name="colortheme_scid_brown">Scid Braun</string>
-  <string name="colortheme_scid_green">Scid Grün</string>
+  <string name="colortheme_scid_default">Standard</string>
+  <string name="colortheme_scid_brown">Braun</string>
+  <string name="colortheme_scid_green">Grün</string>
   <string name="select_game_mode">Spielmodus auswählen</string>
   <string name="edit_replay_game">Partie bearbeiten/nachspielen</string>
   <string name="analysis_mode">Analyse</string>
@@ -593,30 +593,22 @@ wenn Sie es nicht aktiv nutzen.\
   </string-array>
   <string-array name="button_action_texts">
     <item>Deaktiviert</item>
-    <item>@string/flip_board</item>
-    <item>@string/toggle_analysis</item>
-    <item>@string/toggle_useranalysis</item>
-    <item>@string/toggle_show_thinking</item>
+    <item>@string/flip_board</item>    
     <item>@string/toggle_book_hints</item>
     <item>@string/toggle_pgn_variations</item>
     <item>@string/toggle_pgn_comments</item>
     <item>@string/toggle_pgn_headers</item>
-    <item>@string/toggle_large_buttons</item>
     <item>@string/toggle_blind_mode</item>
     <item>@string/load_last_file</item>
     <item>@string/select_engine</item>
   </string-array>
   <string-array name="button_action_values">
     <item></item>
-    <item>flipboard</item>
-    <item>toggleAnalysis</item>
-    <item>toggleUserAnalysis</item>
-    <item>showThinking</item>
+    <item>flipboard</item>    
     <item>bookHints</item>
     <item>viewVariations</item>
     <item>viewComments</item>
-    <item>viewHeaders</item>
-    <item>largeButtons</item>
+    <item>viewHeaders</item>    
     <item>blindMode</item>
     <item>loadLastFile</item>
     <item>selectEngine</item>

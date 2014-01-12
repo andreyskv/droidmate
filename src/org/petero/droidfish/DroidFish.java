@@ -191,16 +191,16 @@ public class DroidFish extends Activity implements GUIInterface {
 
     SharedPreferences settings;
 
-    private boolean boardGestures;
-    private float scrollSensitivity;
-    private boolean invertScrollDirection;
+    //private boolean boardGestures;
+    //private float scrollSensitivity;
+    //private boolean invertScrollDirection;
 
     private boolean leftHanded;
     private boolean soundEnabled;
     private MediaPlayer moveSound;
     private boolean vibrateEnabled;
-    private boolean animateMoves;
-    private boolean autoScrollTitle;
+    //private boolean animateMoves;
+    //private boolean autoScrollTitle;
     private boolean showMaterialDiff;
     private boolean showVariationLine;
 
@@ -248,17 +248,17 @@ public class DroidFish extends Activity implements GUIInterface {
                 }
                  public boolean toggleState(){return false;}
             });
-            addAction(new UIAction() {
-                public String getId() { return "showThinking"; }
-                public int getName() { return R.string.toggle_show_thinking; }
-                public int getIcon() { return R.raw.thinking; }
-                public boolean enabled() { return true; }
-                public void run() {
-                    mShowThinking = toggleBooleanPref("showThinking");
-                    updateThinkingInfo();
-                }
-                 public boolean toggleState(){return false;}
-            });
+//            addAction(new UIAction() {
+//                public String getId() { return "showThinking"; }
+//                public int getName() { return R.string.toggle_show_thinking; }
+//                public int getIcon() { return R.raw.thinking; }
+//                public boolean enabled() { return true; }
+//                public void run() {
+//                    mShowThinking = toggleBooleanPref("showThinking");
+//                    updateThinkingInfo();
+//                }
+//                 public boolean toggleState(){return false;}
+//            });
             addAction(new UIAction() {
                 public String getId() { return "bookHints"; }
                 public int getName() { return R.string.toggle_book_hints; }
@@ -337,7 +337,7 @@ public class DroidFish extends Activity implements GUIInterface {
                 public int getName() { return R.string.toggle_useranalysis; }
                 public int getIcon() { return R.raw.header; }
                 public boolean enabled() { return true; }
-                private int oldGameModeType = GameMode.EDIT_GAME;
+                private int oldGameModeType = 0;
                 public void run() {
                     int gameModeType;
                     if (ctrl.editMode()) {
@@ -355,17 +355,17 @@ public class DroidFish extends Activity implements GUIInterface {
             });
             
             
-            addAction(new UIAction() {
-                public String getId() { return "largeButtons"; }
-                public int getName() { return R.string.toggle_large_buttons; }
-                public int getIcon() { return R.raw.magnify; }
-                public boolean enabled() { return true; }
-                public void run() {
-                    pgnOptions.view.headers = toggleBooleanPref("largeButtons");
-                    updateButtons();
-                }
-                 public boolean toggleState(){return false;}
-            });
+//            addAction(new UIAction() {
+//                public String getId() { return "largeButtons"; }
+//                public int getName() { return R.string.toggle_large_buttons; }
+//                public int getIcon() { return R.raw.magnify; }
+//                public boolean enabled() { return true; }
+//                public void run() {
+//                    pgnOptions.view.headers = toggleBooleanPref("largeButtons");
+//                    updateButtons();
+//                }
+//                 public boolean toggleState(){return false;}
+//            });
             addAction(new UIAction() {
                 public String getId() { return "blindMode"; }
                 public int getName() { return R.string.blind_mode; }
@@ -626,8 +626,8 @@ public class DroidFish extends Activity implements GUIInterface {
         cb.setPosition(oldCB.pos);
         cb.setFlipped(oldCB.flipped);
         cb.setDrawSquareLabels(oldCB.drawSquareLabels);
-        cb.oneTouchMoves = oldCB.oneTouchMoves;
-        cb.toggleSelection = oldCB.toggleSelection;
+    //    cb.oneTouchMoves = oldCB.oneTouchMoves;
+    //    cb.toggleSelection = oldCB.toggleSelection;
         cb.highlightLastMove = oldCB.highlightLastMove;
         cb.setBlindMode(oldCB.blindMode);
         setSelection(oldCB.selectedSquare);
@@ -699,82 +699,82 @@ public class DroidFish extends Activity implements GUIInterface {
             private float scrollY = 0;
             @Override
             public boolean onDown(MotionEvent e) {
-                if (!boardGestures) {
-                    handleClick(e);
-                    return true;
-                }
-                scrollX = 0;
-                scrollY = 0;
-                return false;
+               // if (!boardGestures) {
+                handleClick(e);
+                return true;
+                //}
+             //   scrollX = 0;
+             //   scrollY = 0;
+             //   return false;
             }
             @Override
             public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-                if (!boardGestures)
+              //  if (!boardGestures)
                     return false;
-                cb.cancelLongPress();
-                if (invertScrollDirection) {
-                    distanceX = -distanceX;
-                    distanceY = -distanceY;
-                }
-                if ((scrollSensitivity > 0) && (cb.sqSize > 0)) {
-                    scrollX += distanceX;
-                    scrollY += distanceY;
-                    float scrollUnit = cb.sqSize * scrollSensitivity;
-                    if (Math.abs(scrollX) >= Math.abs(scrollY)) {
-                        // Undo/redo
-                        int nRedo = 0, nUndo = 0;
-                        while (scrollX > scrollUnit) {
-                            nRedo++;
-                            scrollX -= scrollUnit;
-                        }
-                        while (scrollX < -scrollUnit) {
-                            nUndo++;
-                            scrollX += scrollUnit;
-                        }
-                        if (nUndo + nRedo > 0)
-                            scrollY = 0;
-                        if (nRedo + nUndo > 1) {
-                          //  boolean analysis = gameMode.analysisMode();
-                            boolean human = gameMode.playerWhite() || gameMode.playerBlack();
-                            if (!human)
-                                ctrl.setGameMode(new GameMode(GameMode.TWO_PLAYERS));
-                        }
-                        for (int i = 0; i < nRedo; i++) ctrl.redoMove();
-                        for (int i = 0; i < nUndo; i++) ctrl.undoMove();
-                        ctrl.setGameMode(gameMode);
-                    } else {
-                        // Next/previous variation
-                        int varDelta = 0;
-                        while (scrollY > scrollUnit) {
-                            varDelta++;
-                            scrollY -= scrollUnit;
-                        }
-                        while (scrollY < -scrollUnit) {
-                            varDelta--;
-                            scrollY += scrollUnit;
-                        }
-                        if (varDelta != 0)
-                            scrollX = 0;
-                        ctrl.changeVariation(varDelta);
-                    }
-                }
-                return true;
+//                cb.cancelLongPress();
+//                if (invertScrollDirection) {
+//                    distanceX = -distanceX;
+//                    distanceY = -distanceY;
+//                }
+//                if ((scrollSensitivity > 0) && (cb.sqSize > 0)) {
+//                    scrollX += distanceX;
+//                    scrollY += distanceY;
+//                    float scrollUnit = cb.sqSize * scrollSensitivity;
+//                    if (Math.abs(scrollX) >= Math.abs(scrollY)) {
+//                        // Undo/redo
+//                        int nRedo = 0, nUndo = 0;
+//                        while (scrollX > scrollUnit) {
+//                            nRedo++;
+//                            scrollX -= scrollUnit;
+//                        }
+//                        while (scrollX < -scrollUnit) {
+//                            nUndo++;
+//                            scrollX += scrollUnit;
+//                        }
+//                        if (nUndo + nRedo > 0)
+//                            scrollY = 0;
+//                        if (nRedo + nUndo > 1) {
+//                          //  boolean analysis = gameMode.analysisMode();
+//                            boolean human = gameMode.playerWhite() || gameMode.playerBlack();
+//                            if (!human)
+//                                ctrl.setGameMode(new GameMode(GameMode.TWO_PLAYERS));
+//                        }
+//                        for (int i = 0; i < nRedo; i++) ctrl.redoMove();
+//                        for (int i = 0; i < nUndo; i++) ctrl.undoMove();
+//                        ctrl.setGameMode(gameMode);
+//                    } else {
+//                        // Next/previous variation
+//                        int varDelta = 0;
+//                        while (scrollY > scrollUnit) {
+//                            varDelta++;
+//                            scrollY -= scrollUnit;
+//                        }
+//                        while (scrollY < -scrollUnit) {
+//                            varDelta--;
+//                            scrollY += scrollUnit;
+//                        }
+//                        if (varDelta != 0)
+//                            scrollX = 0;
+//                        ctrl.changeVariation(varDelta);
+//                    }
+//                }
+//                return true;
             }
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
-                if (!boardGestures)
-                    return false;
-                cb.cancelLongPress();
-                handleClick(e);
-                return true;
+             //   if (!boardGestures)
+                  return false;
+               // cb.cancelLongPress();
+                //handleClick(e);
+                //return true;
             }
             @Override
             public boolean onDoubleTapEvent(MotionEvent e) {
-                if (!boardGestures)
-                    return false;
-                if (e.getAction() == MotionEvent.ACTION_UP)
-                    handleClick(e);
-                return true;
+                //if (!boardGestures)
+                  return false;
+                //if (e.getAction() == MotionEvent.ACTION_UP)
+                //    handleClick(e);
+                //return true;
             }
             private final void handleClick(MotionEvent e) {
                 if (ctrl.humansTurn()) {
@@ -787,9 +787,9 @@ public class DroidFish extends Activity implements GUIInterface {
             }
             @Override
             public void onLongPress(MotionEvent e) {
-                if (!boardGestures)
-                    return;
-                ((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(20);
+                //if (!boardGestures)
+                  //  return;
+              //  ((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(20);
                 removeDialog(BOARD_MENU_DIALOG);
                 showDialog(BOARD_MENU_DIALOG);
             }
@@ -799,16 +799,16 @@ public class DroidFish extends Activity implements GUIInterface {
                 return gd.onTouchEvent(event);
             }
         });
-        cb.setOnTrackballListener(new ChessBoard.OnTrackballListener() {
-            public void onTrackballEvent(MotionEvent event) {
-                if (ctrl.humansTurn()) {
-                    Move m = cb.handleTrackballEvent(event);
-                    if (m != null)
-                        ctrl.makeHumanMove(m);
-                    setEgtbHints(cb.getSelectedSquare());
-                }
-            }
-        });
+//        cb.setOnTrackballListener(new ChessBoard.OnTrackballListener() {
+//            public void onTrackballEvent(MotionEvent event) {
+//                if (ctrl.humansTurn()) {
+//                    Move m = cb.handleTrackballEvent(event);
+//                    if (m != null)
+//                        ctrl.makeHumanMove(m);
+//                    setEgtbHints(cb.getSelectedSquare());
+//                }
+//            }
+//        });
 
         moveList.setOnLongClickListener(new OnLongClickListener() {
             public boolean onLongClick(View v) {
@@ -939,8 +939,8 @@ public class DroidFish extends Activity implements GUIInterface {
         setBoardFlip(!playerName.equals(oldPlayerName));
         boolean drawSquareLabels = settings.getBoolean("drawSquareLabels", true);
         cb.setDrawSquareLabels(drawSquareLabels);
-        cb.oneTouchMoves = settings.getBoolean("oneTouchMoves", false);
-        cb.toggleSelection = getIntSetting("squareSelectType", 0) == 1;
+        //cb.oneTouchMoves = settings.getBoolean("oneTouchMoves", false);
+        //cb.toggleSelection = getIntSetting("squareSelectType", 0) == 1;
         cb.highlightLastMove = settings.getBoolean("highlightLastMove", true);
         cb.setBlindMode(settings.getBoolean("blindMode", false));
 
@@ -964,9 +964,9 @@ public class DroidFish extends Activity implements GUIInterface {
         movesPerSession = getIntSetting("movesPerSession", 60);
         timeIncrement = getIntSetting("timeIncrement", 0);
 
-        boardGestures = settings.getBoolean("boardGestures", false);
-        scrollSensitivity = Float.parseFloat(settings.getString("scrollSensitivity", "2"));
-        invertScrollDirection = settings.getBoolean("invertScrollDirection", false);
+        //boardGestures = settings.getBoolean("boardGestures", false);
+        //scrollSensitivity = Float.parseFloat(settings.getString("scrollSensitivity", "2"));
+        //invertScrollDirection = settings.getBoolean("invertScrollDirection", false);
         discardVariations = settings.getBoolean("discardVariations", true);
         Util.setFullScreenMode(this, settings);
         useWakeLock = settings.getBoolean("wakeLock", false);
@@ -982,8 +982,8 @@ public class DroidFish extends Activity implements GUIInterface {
         thinking.setTextSize(fontSize);
         soundEnabled = settings.getBoolean("soundEnabled", false);
         vibrateEnabled = settings.getBoolean("vibrateEnabled", false);
-        animateMoves = settings.getBoolean("animateMoves", true);
-        autoScrollTitle = settings.getBoolean("autoScrollTitle", true);
+        //animateMoves = settings.getBoolean("animateMoves", true);
+        //autoScrollTitle = settings.getBoolean("autoScrollTitle", true);
         setTitleScrolling();
 
         custom1ButtonActions.readPrefs(settings, actionFactory);
@@ -1065,8 +1065,7 @@ public class DroidFish extends Activity implements GUIInterface {
 
     /** Enable/disable title bar scrolling. */
     private final void setTitleScrolling() {
-        TextUtils.TruncateAt where = autoScrollTitle ? TextUtils.TruncateAt.MARQUEE
-                                                     : TextUtils.TruncateAt.END;
+        TextUtils.TruncateAt where =  TextUtils.TruncateAt.END;
         whiteTitleText.setEllipsize(where);
         blackTitleText.setEllipsize(where);
         whiteFigText.setEllipsize(where);
@@ -1074,11 +1073,11 @@ public class DroidFish extends Activity implements GUIInterface {
     }
 
     private final void updateButtons() {
-        boolean largeButtons = settings.getBoolean("largeButtons", true);
+        //boolean largeButtons = settings.getBoolean("largeButtons", true);
         Resources r = getResources();
         int bWidth  = (int)Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 36, r.getDisplayMetrics()));
         int bHeight = (int)Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 32, r.getDisplayMetrics()));
-        if (largeButtons) {
+//        if (largeButtons) {
 //            if (custom1ButtonActions.isEnabled() &&
 //                custom2ButtonActions.isEnabled() &&
 //                custom3ButtonActions.isEnabled()) {
@@ -1094,7 +1093,7 @@ public class DroidFish extends Activity implements GUIInterface {
                 bWidth  = bWidth  *  2;
                 bHeight = bHeight *  2;
     //        }
-        }
+       // }
         SVG svg = SVGParser.getSVGFromResource(getResources(), R.raw.touch);
         setButtonData(custom1Button, bWidth, bHeight, custom1ButtonActions.getIcon(), svg, false);
         setButtonData(custom2Button, bWidth, bHeight, custom2ButtonActions.getIcon(), svg, true);
@@ -1247,7 +1246,8 @@ public class DroidFish extends Activity implements GUIInterface {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem item = menu.findItem(R.id.item_file_menu);
-        item.setTitle(boardGestures ? R.string.option_file : R.string.tools_menu);
+     //   item.setTitle(boardGestures ? R.string.option_file : R.string.tools_menu);
+        item.setTitle(R.string.tools_menu);
         return true;
     }
 
@@ -1277,7 +1277,7 @@ public class DroidFish extends Activity implements GUIInterface {
             return true;
         }
         case R.id.item_file_menu: {
-            int dialog = boardGestures ? FILE_MENU_DIALOG : BOARD_MENU_DIALOG;
+            int dialog = BOARD_MENU_DIALOG;
             removeDialog(dialog);
             showDialog(dialog);
             return true;
@@ -1626,7 +1626,7 @@ public class DroidFish extends Activity implements GUIInterface {
 
     /** Report a move made that is a candidate for GUI animation. */
     public void setAnimMove(Position sourcePos, Move move, boolean forward) {
-        if (animateMoves && (move != null))
+        if (move != null)
             cb.setAnimMove(sourcePos, move, forward);
     }
 

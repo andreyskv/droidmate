@@ -75,9 +75,9 @@ préserver la batterie, ou de quitter <i>DroidFish</i> en utilisant la touche re
   <string name="colortheme_xboard">XBoard</string>
   <string name="colortheme_blue">Bleu</string>
   <string name="colortheme_grey">Gris</string>
-  <string name="colortheme_scid_default">Scid par défaut</string>
-  <string name="colortheme_scid_brown">Scid marron</string>
-  <string name="colortheme_scid_green">Scid vert</string>
+  <string name="colortheme_scid_default">Par défaut</string>
+  <string name="colortheme_scid_brown">Marron</string>
+  <string name="colortheme_scid_green">Vert</string>
   <string name="select_game_mode">Sélectionner le Mode de jeu</string>
   <string name="edit_replay_game">Modifier/rejouer la partie</string>
   <string name="analysis_mode">Mode analyse</string>
@@ -589,29 +589,21 @@ préserver la batterie, ou de quitter <i>DroidFish</i> en utilisant la touche re
   <string-array name="button_action_texts">
     <item>Désactivé</item>
     <item>@string/flip_board</item>
-    <item>@string/toggle_analysis</item>
-    <item>@string/toggle_useranalysis</item>
-    <item>@string/toggle_show_thinking</item>
     <item>@string/toggle_book_hints</item>
     <item>@string/toggle_pgn_variations</item>
     <item>@string/toggle_pgn_comments</item>
-    <item>@string/toggle_pgn_headers</item>
-    <item>@string/toggle_large_buttons</item>
+    <item>@string/toggle_pgn_headers</item>    
     <item>@string/toggle_blind_mode</item>
     <item>@string/load_last_file</item>
     <item>@string/select_engine</item>
   </string-array>
   <string-array name="button_action_values">
     <item></item>
-    <item>flipboard</item>
-    <item>toggleAnalysis</item>
-    <item>toggleUserAnalysis</item>
-    <item>showThinking</item>
+    <item>flipboard</item>    
     <item>bookHints</item>
     <item>viewVariations</item>
     <item>viewComments</item>
-    <item>viewHeaders</item>
-    <item>largeButtons</item>
+    <item>viewHeaders</item>    
     <item>blindMode</item>
     <item>loadLastFile</item>
     <item>selectEngine</item>

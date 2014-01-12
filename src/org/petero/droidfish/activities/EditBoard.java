@@ -72,8 +72,8 @@ public class EditBoard extends Activity {
     private Button cancelButton;
 
     private boolean egtbHints;
-    private boolean autoScrollTitle;
-    private boolean boardGestures;
+    //private boolean autoScrollTitle;
+    //private boolean boardGestures;
     private TextView whiteFigText;
     private TextView blackFigText;
     private Typeface figNotation;
@@ -87,8 +87,8 @@ public class EditBoard extends Activity {
 
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         egtbHints = settings.getBoolean("tbHintsEdit", false);
-        autoScrollTitle = settings.getBoolean("autoScrollTitle", true);
-        boardGestures = settings.getBoolean("boardGestures", true);
+        //autoScrollTitle = settings.getBoolean("autoScrollTitle", true);
+        //boardGestures = settings.getBoolean("boardGestures", true);
 
         initUI();
 
@@ -148,8 +148,7 @@ public class EditBoard extends Activity {
         TextView summaryTitleText = (TextView) findViewById(R.id.title_text_summary);
         summaryTitleText.setText(R.string.edit_board);
 
-        TextUtils.TruncateAt where = autoScrollTitle ? TextUtils.TruncateAt.MARQUEE
-                                                     : TextUtils.TruncateAt.END;
+        TextUtils.TruncateAt where = TextUtils.TruncateAt.END;
         engineTitleText.setEllipsize(where);
         whiteFigText.setEllipsize(where);
         blackFigText.setEllipsize(where);
@@ -173,40 +172,40 @@ public class EditBoard extends Activity {
         final GestureDetector gd = new GestureDetector(new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onDown(MotionEvent e) {
-                if (!boardGestures) {
+             //   if (!boardGestures) {
                     handleClick(e);
                     return true;
-                }
-                return false;
+               // }
+               // return false;
             }
             @Override
             public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-                if (!boardGestures)
+                //if (!boardGestures)
                     return false;
-                cb.cancelLongPress();
-                return true;
+                //cb.cancelLongPress();
+                //return true;
             }
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
-                if (!boardGestures)
+                //if (!boardGestures)
                     return false;
-                cb.cancelLongPress();
-                handleClick(e);
-                return true;
+                //cb.cancelLongPress();
+                //handleClick(e);
+                //return true;
             }
             @Override
             public boolean onDoubleTapEvent(MotionEvent e) {
-                if (!boardGestures)
+                //if (!boardGestures)
                     return false;
-                if (e.getAction() == MotionEvent.ACTION_UP)
-                    handleClick(e);
-                return true;
+                //if (e.getAction() == MotionEvent.ACTION_UP)
+                //    handleClick(e);
+                //return true;
             }
             @Override
             public void onLongPress(MotionEvent e) {
-                if (!boardGestures)
-                    return;
-                ((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(20);
+               // if (!boardGestures)
+               //     return;
+               // ((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(20);
                 showDialog(EDIT_DIALOG);
             }
             private final void handleClick(MotionEvent e) {
@@ -222,14 +221,14 @@ public class EditBoard extends Activity {
                 return gd.onTouchEvent(event);
             }
         });
-        cb.setOnTrackballListener(new ChessBoard.OnTrackballListener() {
-            public void onTrackballEvent(MotionEvent event) {
-                Move m = cb.handleTrackballEvent(event);
-                if (m != null)
-                    doMove(m);
-                setEgtbHints(cb.getSelectedSquare());
-            }
-        });
+//        cb.setOnTrackballListener(new ChessBoard.OnTrackballListener() {
+//            public void onTrackballEvent(MotionEvent event) {
+//                Move m = cb.handleTrackballEvent(event);
+//                if (m != null)
+//                    doMove(m);
+//                setEgtbHints(cb.getSelectedSquare());
+//            }
+//        });
     }
 
     @Override

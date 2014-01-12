@@ -51,7 +51,7 @@ public abstract class ChessBoard extends View {
     int pieceXDelta, pieceYDelta; // top/left pixel draw position relative to square
     public boolean flipped;
     public boolean drawSquareLabels;
-    boolean toggleSelection;
+    //boolean toggleSelection;
     boolean highlightLastMove;         // If true, last move is marked with a rectangle
     boolean blindMode;                 // If true, no chess pieces and arrows are drawn
 
@@ -97,8 +97,8 @@ public abstract class ChessBoard extends View {
         x0 = y0 = sqSize = 0;
         pieceXDelta = pieceYDelta = -1;
         flipped = false;
-        drawSquareLabels = false;
-        toggleSelection = false;
+        drawSquareLabels = true;
+        //toggleSelection = false;
         highlightLastMove = true;
         blindMode = false;
 
