@@ -1552,22 +1552,29 @@ public class GameTree {
                     int moves = 0;
                     int time = 0;
                     int inc = 0;
-                    int idx = f.indexOf('/');
-                    if (idx > 0)
-                        moves = Integer.parseInt(f.substring(0, idx).trim());
-                    if (idx >= 0)
-                        f = f.substring(idx+1);
-                    idx = f.indexOf('+');
-                    if (idx >= 0) {
+                    int mtime = 0;
+                    int idx = f.indexOf('s');
+                    if (idx >0){
+                        mtime = (int)(Double.parseDouble(f.trim())*1e3);
+                    }
+                    else{
+                        idx = f.indexOf('/');
                         if (idx > 0)
-                            time = (int)(Double.parseDouble(f.substring(0, idx).trim())*1e3);
+                            moves = Integer.parseInt(f.substring(0, idx).trim());
                         if (idx >= 0)
                             f = f.substring(idx+1);
-                        inc = (int)(Double.parseDouble(f.trim())*1e3);
-                    } else {
-                        time = (int)(Double.parseDouble(f.trim())*1e3);
-                    }
-                    ret.add(new TimeControlField(time, moves, inc));
+                        idx = f.indexOf('+');
+                        if (idx >= 0) {
+                            if (idx > 0)
+                                time = (int)(Double.parseDouble(f.substring(0, idx).trim())*1e3);
+                            if (idx >= 0)
+                                f = f.substring(idx+1);
+                            inc = (int)(Double.parseDouble(f.trim())*1e3);
+                        } else {
+                            time = (int)(Double.parseDouble(f.trim())*1e3);
+                        }
+                       }
+                    ret.add(new TimeControlField(time, moves, inc, mtime));
                 } catch (NumberFormatException ex) {
                     // Invalid syntax, ignore
                 }
@@ -1582,25 +1589,36 @@ public class GameTree {
         for (int i = 0; i < nf; i++) {
             if (i > 0)
                 sb.append(':');
-            TimeControlField t = tcFields.get(i);
-            if (t.movesPerSession > 0) {
-                sb.append(t.movesPerSession);
-                sb.append('/');
+            TimeControlField t = tcFields.get(i);            
+            if (t.moveTime > 0) {                
+                sb.append('s');
+                sb.append(t.moveTime / 1000);
+                int ms = t.moveTime % 1000;
+                if (ms > 0) {
+                    sb.append('.');
+                    sb.append(String.format(Locale.US, "%03d", ms));                    
+                }
             }
-            sb.append(t.timeControl / 1000);
-            int ms = t.timeControl % 1000;
-            if (ms > 0) {
-                sb.append('.');
-                sb.append(String.format(Locale.US, "%03d", ms));
-            }
-            if (t.increment > 0) {
-                sb.append('+');
-                sb.append(t.increment / 1000);
-                ms = t.increment % 1000;
+            else{            
+                if (t.movesPerSession > 0) {
+                    sb.append(t.movesPerSession);
+                    sb.append('/');
+                }
+                sb.append(t.timeControl / 1000);
+                int ms = t.timeControl % 1000;
                 if (ms > 0) {
                     sb.append('.');
                     sb.append(String.format(Locale.US, "%03d", ms));
                 }
+                if (t.increment > 0) {
+                    sb.append('+');
+                    sb.append(t.increment / 1000);
+                    ms = t.increment % 1000;
+                    if (ms > 0) {
+                        sb.append('.');
+                        sb.append(String.format(Locale.US, "%03d", ms));
+                    }
+                }   
             }
         }
         return sb.toString();

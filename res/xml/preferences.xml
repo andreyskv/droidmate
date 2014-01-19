@@ -2,7 +2,15 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
-        android:title="@string/prefs_time_control">
+        android:title="@string/prefs_time_control">        
+        <ListPreference
+            android:key="moveTime"
+            android:title="@string/prefs_moveTime_title"
+            android:summary="@string/prefs_moveTime_summary"
+            android:entryValues="@array/moveTime_values"
+            android:entries="@array/moveTime_texts"
+            android:defaultValue="@string/moveTime_default">
+        </ListPreference>        
         <ListPreference
             android:key="movesPerSession"
             android:title="@string/prefs_movesPerSession_title"

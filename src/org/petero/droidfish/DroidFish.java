@@ -170,6 +170,7 @@ public class DroidFish extends Activity implements GUIInterface {
     private int timeControl;
     private int movesPerSession;
     private int timeIncrement;
+    private int moveTime;
     private int mEngineThreads;
     private String playerName;
     private boolean boardFlipped;
@@ -451,7 +452,7 @@ public class DroidFish extends Activity implements GUIInterface {
         egtbForceReload = true;
         readPrefs();
         TimeControlData tcData = new TimeControlData();
-        tcData.setTimeControl(timeControl, movesPerSession, timeIncrement);
+        tcData.setTimeControl(timeControl, movesPerSession, timeIncrement, moveTime);
         ctrl.newGame(gameMode, tcData);
         {
             byte[] data = null;
@@ -964,6 +965,7 @@ public class DroidFish extends Activity implements GUIInterface {
         timeControl = getIntSetting("timeControl", 120000);
         movesPerSession = getIntSetting("movesPerSession", 60);
         timeIncrement = getIntSetting("timeIncrement", 0);
+        moveTime = getIntSetting("moveTime", 1000);
 
         //boardGestures = settings.getBoolean("boardGestures", false);
         //scrollSensitivity = Float.parseFloat(settings.getString("scrollSensitivity", "2"));
@@ -1829,7 +1831,7 @@ public class DroidFish extends Activity implements GUIInterface {
         }
 //        savePGNToFile(".autosave.pgn", true);
         TimeControlData tcData = new TimeControlData();
-        tcData.setTimeControl(timeControl, movesPerSession, timeIncrement);
+        tcData.setTimeControl(timeControl, movesPerSession, timeIncrement, moveTime);
         ctrl.newGame(gameMode, tcData);
         ctrl.startGame();
         setBoardFlip(true);

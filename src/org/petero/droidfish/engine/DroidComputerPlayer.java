@@ -115,6 +115,8 @@ public class DroidComputerPlayer {
         int wInc;               // White time increment per move, milliseconds
         int bInc;               // Black time increment per move, milliseconds
         int movesToGo;          // Number of moves to next time control
+        
+        int moveTime;           // Fixed time per move if set overrides the above
 
         String engine;          // Engine name (identifier)
         int engineThreads;      // Number of engine threads to use
@@ -162,6 +164,7 @@ public class DroidComputerPlayer {
                                                   Position prevPos, ArrayList<Move> mList,
                                                   Position currPos, boolean drawOffer,
                                                   int wTime, int bTime, int wInc, int bInc, int movesToGo,
+                                                  int moveTime,
                                                   boolean ponderEnabled, Move ponderMove,
                                                   String engine, int engineThreads,
                                                   int strength) {
@@ -179,6 +182,7 @@ public class DroidComputerPlayer {
             sr.wInc = wInc;
             sr.bInc = bInc;
             sr.movesToGo = movesToGo;
+            sr.moveTime = moveTime;
             sr.engine = engine;
             sr.engineThreads = engineThreads;
             sr.strength = strength;
@@ -558,13 +562,19 @@ public class DroidComputerPlayer {
             if (sr.wTime < 1) sr.wTime = 1;
             if (sr.bTime < 1) sr.bTime = 1;
             StringBuilder goStr = new StringBuilder(96);
-            goStr.append(String.format(Locale.US, "go wtime %d btime %d", sr.wTime, sr.bTime));
-            if (sr.wInc > 0)
-                goStr.append(String.format(Locale.US, " winc %d", sr.wInc));
-            if (sr.bInc > 0)
-                goStr.append(String.format(Locale.US, " binc %d", sr.bInc));
-            if (sr.movesToGo > 0)
-                goStr.append(String.format(Locale.US, " movestogo %d", sr.movesToGo));
+            
+            if (sr.moveTime > 0)
+                goStr.append(String.format(Locale.US, "go movetime %d", sr.moveTime));
+            else{
+                goStr.append(String.format(Locale.US, "go wtime %d btime %d", sr.wTime, sr.bTime));
+                if (sr.wInc > 0)
+                    goStr.append(String.format(Locale.US, " winc %d", sr.wInc));
+                if (sr.bInc > 0)
+                    goStr.append(String.format(Locale.US, " binc %d", sr.bInc));
+                if (sr.movesToGo > 0)
+                    goStr.append(String.format(Locale.US, " movestogo %d", sr.movesToGo));
+            }
+            
             if (sr.ponderMove != null)
                 goStr.append(" ponder");
             if (sr.searchMoves != null) {

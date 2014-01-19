@@ -905,14 +905,16 @@ public class DroidChessController {
                 int wTime = game.timeController.getRemainingTime(true, now);
                 int bTime = game.timeController.getRemainingTime(false, now);
                 int wInc = game.timeController.getIncrement(true);
-                int bInc = game.timeController.getIncrement(false);
+                int bInc = game.timeController.getIncrement(false);                
                 boolean wtm = currPos.whiteMove;
+                int moveTime = game.timeController.getMoveTime(wtm);
                 int movesToGo = game.timeController.getMovesToTC(wtm);
                 final Move fPonderMove = ponder ? ponderMove : null;
                 SearchRequest sr = DroidComputerPlayer.SearchRequest.searchRequest(
                         searchId, now, ph.first, ph.second, currPos,
                         game.haveDrawOffer(),
                         wTime, bTime, wInc, bInc, movesToGo,
+                        moveTime,
                         gui.ponderMode(), fPonderMove,
                         engine, gui.engineThreads(),
                         strength);

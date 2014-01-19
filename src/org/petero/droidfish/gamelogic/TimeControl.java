@@ -130,6 +130,12 @@ public class TimeControl {
         int tcIdx = getCurrentTC(whiteMove).first;
         return tc.get(tcIdx).increment;
     }
+    
+    public final int getMoveTime(boolean whiteMove){
+        ArrayList<TimeControlField> tc = tcData.getTC(whiteMove);
+        int tcIdx = getCurrentTC(whiteMove).first;
+        return tc.get(tcIdx).moveTime;
+    }
 
     /** Return number of moves to the next time control, or 0 if "sudden death". */
     public final int getMovesToTC(boolean whiteMove) {

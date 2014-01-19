@@ -6,6 +6,7 @@
     <string name="moves_per_session_default">60</string>
     <string name="time_control_default">120000</string>
     <string name="time_increment_default">0</string>
+    <string name="moveTime_default">0</string>
     <string name="squareSelectType_default">0</string>
     <string name="font_size_default">12</string>
     <string name="thinking_arrows_default">2</string>
@@ -268,8 +269,10 @@ you are not actively using the program.\
     <string name="prefs_movesPerSession_summary">Number of moves between time controls</string>
     <string name="prefs_timeControl_title">Time</string>
     <string name="prefs_timeControl_summary">Maximum thinking time between time controls</string>
-    <string name="prefs_timeIncrement_title">Increment</string>
+    <string name="prefs_timeIncrement_title">Increment</string>    
     <string name="prefs_timeIncrement_summary">Extra thinking time for each completed move</string>
+    <string name="prefs_moveTime_title">Time per move</string>    
+    <string name="prefs_moveTime_summary">Seconds per move (overrides standard time control)</string>    
     <string name="prefs_hints">Hints</string>
     <string name="prefs_showThinking_title">Show Computer Thinking</string>
     <string name="prefs_showThinking_summary">Display computer algorithm information during search</string>
@@ -536,7 +539,35 @@ you are not actively using the program.\
         <item>15000</item>
         <item>30000</item>
         <item>60000</item>
+    </string-array>    
+    <string-array name="moveTime_values">
+        <item>0</item>
+        <item>500</item>
+        <item>1000</item>
+        <item>2000</item>
+        <item>3000</item>
+        <item>4000</item>
+        <item>5000</item>
+        <item>8000</item>
+        <item>10000</item>
+        <item>12000</item>
+        <item>15000</item>
+        <item>30000</item>        
     </string-array>
+    <string-array name="moveTime_texts">
+        <item>Disabled</item>
+        <item>0.5s</item>
+        <item>1s</item>
+        <item>2s</item>
+        <item>3s</item>
+        <item>4s</item>
+        <item>5s</item>
+        <item>8s</item>
+        <item>10s</item>
+        <item>12s</item>
+        <item>15s</item>
+        <item>30s</item>        
+    </string-array>            
     <string-array name="squareSelectType_texts">
         <item>Sticky</item>
         <item>Toggle</item>
